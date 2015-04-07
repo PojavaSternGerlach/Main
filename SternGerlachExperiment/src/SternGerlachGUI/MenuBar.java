@@ -13,8 +13,10 @@ public class MenuBar extends JMenuBar {
 
 		JMenuItem closeFrame = new JMenuItem("Close");
 		menu.add(closeFrame);
+		
 		JMenuItem export = new JMenuItem("Export to csv");
 		menu.add(export);
+		
 		JMenuItem changeLanguage = new JMenuItem("Change Language");
 		menu.add(changeLanguage);
 		
