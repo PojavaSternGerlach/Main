@@ -1,6 +1,12 @@
 package SternGerlachGUI;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -59,7 +65,7 @@ public class MainFrame extends JFrame {
 		// przyciski
 		JPanel buttons = new JPanel();
 		mc.gridx = 1;
-		mc.gridy = 0;
+		mc.gridy = 1;
 		add(buttons, mc);
 		//buttons.setPreferredSize(new Dimension(1000,250));
 		buttons.setBackground(Color.WHITE);
@@ -70,8 +76,9 @@ public class MainFrame extends JFrame {
 		c.insets = new Insets(10,50,0,50);
 		
 		//lista rozwijana - ilosc magnesow
-		JComboBox<String> magnets = new JComboBox<String>();
-		c.gridy = 0;
+		String[] magnetNumbers = { "1 magnet","2 magnets","3 magnets" };
+		JComboBox<String> magnets = new JComboBox<String>(magnetNumbers);
+		c.gridy = 0;		
 		buttons.add(magnets, c);
 		
 		// prawdopodobieñstwa
@@ -92,10 +99,16 @@ public class MainFrame extends JFrame {
 		// stan magnesow, k¹t pod jakim w danym momencie s¹ ustawione
 		JPanel state = new JPanel();
 		state.setBackground(Color.WHITE);
-		mc.gridy = 1;
+		mc.gridy = 0;
 		add(state, mc);
 		state.setPreferredSize(new Dimension(250,250));
-		state.setLayout(new GridLayout(3,1));
+		state.setLayout(new GridLayout(5,1));
+		
+		JLabel magnetState = new JLabel("Magnets state:");
+		state.add(magnetState);
+		
+		JLabel blank = new JLabel("");
+		state.add(blank);
 		
 		JLabel magnet1 = new JLabel("Magnet 1: +z");
 		magnet1.setBackground(Color.WHITE);
@@ -106,7 +119,7 @@ public class MainFrame extends JFrame {
 
 		state.add(magnet2);
 
-		JLabel magnet3 = new JLabel("Magnet 3: brak");
+		JLabel magnet3 = new JLabel("Magnet 3: none");
 		magnet3.setBackground(Color.WHITE);
 
 		state.add(magnet3);
