@@ -20,6 +20,9 @@ class AnimationPanel extends JPanel {
 	
 	int x = 0;
 	int y = 0;
+	int theta = 0;
+	
+	FilledRectangle secondMagnet = new FilledRectangle();
 	
 	List<FilledRectangle> elements = new ArrayList<FilledRectangle>();
 	
@@ -40,7 +43,7 @@ class AnimationPanel extends JPanel {
 		firstMagnet.setY(120);
 		elements.add(firstMagnet);
 		
-		FilledRectangle secondMagnet = new FilledRectangle();
+		//FilledRectangle secondMagnet = new FilledRectangle();
 		secondMagnet.setHeight(30);
 		secondMagnet.setWidth(90);
 		secondMagnet.setX(250);
@@ -68,50 +71,29 @@ class AnimationPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
                 x = e.getX();
                 y = e.getY();  
-                if((y>firstMagnet.getY() && y<(firstMagnet.getY()+firstMagnet.getHeight()))
-                		&& (x>firstMagnet.getX() && x<(firstMagnet.getX()+firstMagnet.getWidth()))){
-                		firstMagnet.rotate(1);
-                		repaint();
-                }
-                else if((y>secondMagnet.getY() && y<(secondMagnet.getY()+secondMagnet.getHeight()))
+//                if((y>firstMagnet.getY()-20 && y<(firstMagnet.getY()+firstMagnet.getHeight()+20))
+//                		&& (x>firstMagnet.getX() && x<(firstMagnet.getX()+firstMagnet.getWidth()))){
+//                		theta += 10;
+//                		firstMagnet.rotate(10);
+//                		repaint();
+//                }
+                if((y>secondMagnet.getY()-20 && y<(secondMagnet.getY()+secondMagnet.getHeight()+20))
                 		&& (x>secondMagnet.getX() && x<(secondMagnet.getX()+secondMagnet.getWidth()))){
-                		secondMagnet.rotate(1);
+                		theta += 10;
+                		secondMagnet.rotate(10);
+                		String output = Double.toString((0.5*Math.pow((Math.cos((theta/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta/2)*Math.PI/180)),2)));
+                		System.out.println(output);
                 		repaint();
                 }
-                else if((y>thirdMagnet.getY() && y<(thirdMagnet.getY()+thirdMagnet.getHeight()))
-                		&& (x>thirdMagnet.getX() && x<(thirdMagnet.getX()+thirdMagnet.getWidth()))){
-                		thirdMagnet.rotate(1);
-                		repaint();
-                }
+//                else if((y>thirdMagnet.getY()-20 && y<(thirdMagnet.getY()+thirdMagnet.getHeight()+20))
+//                		&& (x>thirdMagnet.getX() && x<(thirdMagnet.getX()+thirdMagnet.getWidth()))){
+//                		theta += 10;
+//                		thirdMagnet.rotate(10);
+//                		repaint();
+//                }
             }
             });
 		
-//		addMouseListener(new MouseAdapter() {
-//            @Override
-//			public void mouseClicked(MouseEvent e) {
-//                x = e.getX();
-//                y = e.getY();  
-//                if(y>secondMagnet.getY() && y<secondMagnet.getY()+secondMagnet.getHeight()
-//                		&& x>secondMagnet.getX() && y<secondMagnet.getX()+secondMagnet.getWidth()){
-//                		secondMagnet.rotate(1);
-//                		repaint();
-//                }
-//            }
-//            });
-//		
-//		addMouseListener(new MouseAdapter() {
-//            @Override
-//			public void mouseClicked(MouseEvent e) {
-//                x = e.getX();
-//                y = e.getY();  
-//                if(y>thirdMagnet.getY() && y<thirdMagnet.getY()+thirdMagnet.getHeight()
-//                		&& x>thirdMagnet.getX() && y<thirdMagnet.getX()+thirdMagnet.getWidth()){
-//                		thirdMagnet.rotate(1);
-//                		repaint();
-//                }
-//            }
-//            });
-    
 	}
 	
 	@Override
@@ -128,12 +110,6 @@ class AnimationPanel extends JPanel {
 class FilledRectangle{
 
     private int xPos = 50;
-    
-    //public int deg = 90;
-    
-    //public void setDeg(int deg){
-    //	this.deg = deg;
-    //}
     
     public int getX() {
 		return xPos;
@@ -173,13 +149,12 @@ class FilledRectangle{
 	}
 
 	public void rotate(int deg){
-		height *= Math.cos(Math.toRadians(deg));
+		yPos = yPos + height/2 - (int)(height*Math.cos(Math.toRadians(deg))/2);
+		height = (int) (height * Math.cos(Math.toRadians(deg)));
 	}
 	
 	public void paint(Graphics g){
 
-		//Graphics2D g2 = (Graphics2D) g;
-		//g2.rotate(Math.toRadians(deg));
 		g.setColor(Color.BLACK);
         g.fillRect(xPos,yPos,getWidth(),getHeight());
     }
