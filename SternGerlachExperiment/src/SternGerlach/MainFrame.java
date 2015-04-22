@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -98,6 +100,16 @@ public class MainFrame extends JFrame {
 		JButton startButton = new JButton("START");
 		c.gridy = 2;
 		c.insets = new Insets(150, 50, 0, 50);
+		startButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int theta = animation.theta;
+				String output = Double.toString((0.5*Math.pow((Math.cos((theta/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta/2)*Math.PI/180)),2)));
+        		System.out.println("Probablity:" + output);
+				
+			}
+		});
 
 		buttons.add(startButton,c);
 		
@@ -119,7 +131,7 @@ public class MainFrame extends JFrame {
 		magnet1.setBackground(Color.WHITE);
 		state.add(magnet1);
 		
-		JLabel magnet2 = new JLabel("           Magnet 2: 0");
+		JLabel magnet2 = new JLabel("           Magnet 2: 0 degrees");
 		magnet2.setBackground(Color.WHITE);
 		state.add(magnet2);
 
@@ -137,7 +149,7 @@ public class MainFrame extends JFrame {
                 if((y>animation.secondMagnet.getY()-20 && y<(animation.secondMagnet.getY()+animation.secondMagnet.getHeight()+20))
                 		&& (x>animation.secondMagnet.getX() && x<(animation.secondMagnet.getX()+animation.secondMagnet.getWidth()))){
             			String magnet2State = Integer.toString(animation.theta);
-            			magnet2.setText("           Magnet 2: " + magnet2State);
+            			magnet2.setText("           Magnet 2: " + magnet2State+" degrees");
                 }
 //                else if((y>thirdMagnet.getY()-20 && y<(thirdMagnet.getY()+thirdMagnet.getHeight()+20))
 //                		&& (x>thirdMagnet.getX() && x<(thirdMagnet.getX()+thirdMagnet.getWidth()))){
