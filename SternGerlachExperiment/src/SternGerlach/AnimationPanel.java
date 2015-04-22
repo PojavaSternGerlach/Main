@@ -21,8 +21,11 @@ class AnimationPanel extends JPanel {
 	int x = 0;
 	int y = 0;
 	int theta = 0;
+<<<<<<< HEAD
 	
 	FilledRectangle secondMagnet = new FilledRectangle();
+=======
+>>>>>>> origin/master
 	
 	List<FilledRectangle> elements = new ArrayList<FilledRectangle>();
 	
@@ -71,6 +74,7 @@ class AnimationPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
                 x = e.getX();
                 y = e.getY();  
+<<<<<<< HEAD
 //                if((y>firstMagnet.getY()-20 && y<(firstMagnet.getY()+firstMagnet.getHeight()+20))
 //                		&& (x>firstMagnet.getX() && x<(firstMagnet.getX()+firstMagnet.getWidth()))){
 //                		theta += 10;
@@ -83,6 +87,24 @@ class AnimationPanel extends JPanel {
                 		secondMagnet.rotate(10);
                 		String output = Double.toString((0.5*Math.pow((Math.cos((theta/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta/2)*Math.PI/180)),2)));
                 		System.out.println(output);
+=======
+                if((y>firstMagnet.getY()-20 && y<(firstMagnet.getY()+firstMagnet.getHeight()+20))
+                		&& (x>firstMagnet.getX() && x<(firstMagnet.getX()+firstMagnet.getWidth()))){
+                		theta += 10;
+                		firstMagnet.rotate(10);
+                		repaint();
+                }
+                else if((y>secondMagnet.getY()-20 && y<(secondMagnet.getY()+secondMagnet.getHeight()+20))
+                		&& (x>secondMagnet.getX() && x<(secondMagnet.getX()+secondMagnet.getWidth()))){
+                		theta += 10;
+                		secondMagnet.rotate(10);
+                		repaint();
+                }
+                else if((y>thirdMagnet.getY()-20 && y<(thirdMagnet.getY()+thirdMagnet.getHeight()+20))
+                		&& (x>thirdMagnet.getX() && x<(thirdMagnet.getX()+thirdMagnet.getWidth()))){
+                		theta += 10;
+                		thirdMagnet.rotate(10);
+>>>>>>> origin/master
                 		repaint();
                 }
 //                else if((y>thirdMagnet.getY()-20 && y<(thirdMagnet.getY()+thirdMagnet.getHeight()+20))
