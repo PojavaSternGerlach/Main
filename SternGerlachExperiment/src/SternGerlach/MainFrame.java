@@ -1,4 +1,4 @@
-package SternGerlachGUI;
+package SternGerlach;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,6 +17,9 @@ import javax.swing.JRadioButton;
 
 
 public class MainFrame extends JFrame {
+
+
+	private static final long serialVersionUID = 7096614736350989999L;
 
 	MainFrame(){
 		
@@ -132,14 +135,13 @@ public class MainFrame extends JFrame {
 	}
 }
 
-class AnimationPanel extends JPanel {
-	AnimationPanel(){
-		setBackground(Color.BLUE);
-		setPreferredSize(new Dimension(1400,500));
-	}
-}
+
 
 class GraphPanel extends JPanel{
+
+
+	private static final long serialVersionUID = 2479286754458996908L;
+
 	GraphPanel(){
 		setBackground(Color.WHITE);
 		setPreferredSize(new Dimension(250,250));
