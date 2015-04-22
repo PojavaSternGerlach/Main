@@ -68,13 +68,49 @@ class AnimationPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
                 x = e.getX();
                 y = e.getY();  
-                if(y>firstMagnet.getY() && y<firstMagnet.getY()+firstMagnet.getHeight()
-                		&& x>firstMagnet.getX() && y<firstMagnet.getX()+firstMagnet.getWidth()){
+                if((y>firstMagnet.getY() && y<(firstMagnet.getY()+firstMagnet.getHeight()))
+                		&& (x>firstMagnet.getX() && x<(firstMagnet.getX()+firstMagnet.getWidth()))){
                 		firstMagnet.rotate(1);
+                		repaint();
+                }
+                else if((y>secondMagnet.getY() && y<(secondMagnet.getY()+secondMagnet.getHeight()))
+                		&& (x>secondMagnet.getX() && x<(secondMagnet.getX()+secondMagnet.getWidth()))){
+                		secondMagnet.rotate(1);
+                		repaint();
+                }
+                else if((y>thirdMagnet.getY() && y<(thirdMagnet.getY()+thirdMagnet.getHeight()))
+                		&& (x>thirdMagnet.getX() && x<(thirdMagnet.getX()+thirdMagnet.getWidth()))){
+                		thirdMagnet.rotate(1);
                 		repaint();
                 }
             }
             });
+		
+//		addMouseListener(new MouseAdapter() {
+//            @Override
+//			public void mouseClicked(MouseEvent e) {
+//                x = e.getX();
+//                y = e.getY();  
+//                if(y>secondMagnet.getY() && y<secondMagnet.getY()+secondMagnet.getHeight()
+//                		&& x>secondMagnet.getX() && y<secondMagnet.getX()+secondMagnet.getWidth()){
+//                		secondMagnet.rotate(1);
+//                		repaint();
+//                }
+//            }
+//            });
+//		
+//		addMouseListener(new MouseAdapter() {
+//            @Override
+//			public void mouseClicked(MouseEvent e) {
+//                x = e.getX();
+//                y = e.getY();  
+//                if(y>thirdMagnet.getY() && y<thirdMagnet.getY()+thirdMagnet.getHeight()
+//                		&& x>thirdMagnet.getX() && y<thirdMagnet.getX()+thirdMagnet.getWidth()){
+//                		thirdMagnet.rotate(1);
+//                		repaint();
+//                }
+//            }
+//            });
     
 	}
 	
