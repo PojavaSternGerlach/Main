@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -113,16 +115,41 @@ public class MainFrame extends JFrame {
 		JLabel blank = new JLabel("");
 		state.add(blank);
 		
-		JLabel magnet1 = new JLabel("           Magnet 1: +z");
+		JLabel magnet1 = new JLabel("           Magnet 1: z+");
 		magnet1.setBackground(Color.WHITE);
 		state.add(magnet1);
 		
-		JLabel magnet2 = new JLabel("           Magnet 2: 45 degrees");
+		JLabel magnet2 = new JLabel("           Magnet 2: 0");
 		magnet2.setBackground(Color.WHITE);
-
 		state.add(magnet2);
 
-		JLabel magnet3 = new JLabel("           Magnet 3: none");
+		animation.addMouseListener(new MouseAdapter() {
+            @Override
+			public void mouseClicked(MouseEvent e) {
+                int x = e.getX();
+                int y = e.getY();  
+//                if((y>firstMagnet.getY()-20 && y<(firstMagnet.getY()+firstMagnet.getHeight()+20))
+//                		&& (x>firstMagnet.getX() && x<(firstMagnet.getX()+firstMagnet.getWidth()))){
+//                		theta += 10;
+//                		firstMagnet.rotate(10);
+//                		repaint();
+//                }
+                if((y>animation.secondMagnet.getY()-20 && y<(animation.secondMagnet.getY()+animation.secondMagnet.getHeight()+20))
+                		&& (x>animation.secondMagnet.getX() && x<(animation.secondMagnet.getX()+animation.secondMagnet.getWidth()))){
+            			String magnet2State = Integer.toString(animation.theta);
+            			magnet2.setText("           Magnet 2: " + magnet2State);
+                }
+//                else if((y>thirdMagnet.getY()-20 && y<(thirdMagnet.getY()+thirdMagnet.getHeight()+20))
+//                		&& (x>thirdMagnet.getX() && x<(thirdMagnet.getX()+thirdMagnet.getWidth()))){
+//                		theta += 10;
+//                		thirdMagnet.rotate(10);
+//                		repaint();
+//                }
+            }
+            });
+		
+		
+		JLabel magnet3 = new JLabel("           Magnet 3: z+");
 		magnet3.setBackground(Color.WHITE);
 
 		state.add(magnet3);
