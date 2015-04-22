@@ -77,7 +77,7 @@ class AnimationPanel extends JPanel {
 //                		firstMagnet.rotate(10);
 //                		repaint();
 //                }
-                if((y>secondMagnet.getY()-20 && y<(secondMagnet.getY()+secondMagnet.getHeight()+20))
+                if((theta < 90) && (y>secondMagnet.getY()-20 && y<(secondMagnet.getY()+secondMagnet.getHeight()+20))
                 		&& (x>secondMagnet.getX() && x<(secondMagnet.getX()+secondMagnet.getWidth()))){
                 		theta += 10;
                 		secondMagnet.rotate(10);
