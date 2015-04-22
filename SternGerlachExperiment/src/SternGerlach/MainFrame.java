@@ -107,22 +107,22 @@ public class MainFrame extends JFrame {
 		state.setPreferredSize(new Dimension(250,250));
 		state.setLayout(new GridLayout(5,1));
 		
-		JLabel magnetState = new JLabel("Magnets state:");
+		JLabel magnetState = new JLabel("           Magnets state:");
 		state.add(magnetState);
 		
 		JLabel blank = new JLabel("");
 		state.add(blank);
 		
-		JLabel magnet1 = new JLabel("Magnet 1: +z");
+		JLabel magnet1 = new JLabel("           Magnet 1: +z");
 		magnet1.setBackground(Color.WHITE);
 		state.add(magnet1);
 		
-		JLabel magnet2 = new JLabel("Magnet 2: 45 degrees");
+		JLabel magnet2 = new JLabel("           Magnet 2: 45 degrees");
 		magnet2.setBackground(Color.WHITE);
 
 		state.add(magnet2);
 
-		JLabel magnet3 = new JLabel("Magnet 3: none");
+		JLabel magnet3 = new JLabel("           Magnet 3: none");
 		magnet3.setBackground(Color.WHITE);
 
 		state.add(magnet3);

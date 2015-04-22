@@ -5,7 +5,6 @@ package SternGerlach;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -28,10 +27,10 @@ class AnimationPanel extends JPanel {
 		setPreferredSize(new Dimension(1400,500));
 		
 		FilledRectangle source = new FilledRectangle();
-		source.setHeight(300);
-		source.setWidth(10);
+		source.setHeight(50);
+		source.setWidth(50);
 		source.setX(10);
-		source.setY(10);
+		source.setY(110);
 		elements.add(source);
 		
 		FilledRectangle firstMagnet = new FilledRectangle();
@@ -56,7 +55,7 @@ class AnimationPanel extends JPanel {
 		elements.add(thirdMagnet);
 		
 		FilledRectangle screen = new FilledRectangle();
-		screen.setHeight(300);
+		screen.setHeight(250);
 		screen.setWidth(10);
 		screen.setX(550);
 		screen.setY(10);
@@ -69,20 +68,13 @@ class AnimationPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
                 x = e.getX();
                 y = e.getY();  
-                
+                if(y>firstMagnet.getY() && y<firstMagnet.getY()+firstMagnet.getHeight()
+                		&& x>firstMagnet.getX() && y<firstMagnet.getX()+firstMagnet.getWidth()){
+                		firstMagnet.rotate(1);
+                		repaint();
+                }
             }
             });
-		
-        //nie chce sie obracac
-        if(y>150 && y<180){
-        	if(x>180 && x<220){
-        		elements.remove(1);
-        		int newDeg = firstMagnet.deg + 10;
-        		firstMagnet.setDeg(newDeg);
-        		repaint();
-        	}
-        	
-        }
     
 	}
 	
@@ -101,11 +93,11 @@ class FilledRectangle{
 
     private int xPos = 50;
     
-    public int deg = 0;
+    //public int deg = 90;
     
-    public void setDeg(int deg){
-    	this.deg = deg;
-    }
+    //public void setDeg(int deg){
+    //	this.deg = deg;
+    //}
     
     public int getX() {
 		return xPos;
@@ -129,10 +121,10 @@ class FilledRectangle{
 
     public int getWidth(){
         return width;
-    } 
+    }
 
     public int getHeight(){
-        return height;
+    	return height;
     }
 
 
@@ -144,10 +136,14 @@ class FilledRectangle{
 		this.height = height;
 	}
 
+	public void rotate(int deg){
+		height *= Math.cos(Math.toRadians(deg));
+	}
+	
 	public void paint(Graphics g){
 
-		Graphics2D g2 = (Graphics2D) g;
-		g2.rotate(Math.toRadians(deg));
+		//Graphics2D g2 = (Graphics2D) g;
+		//g2.rotate(Math.toRadians(deg));
 		g.setColor(Color.BLACK);
         g.fillRect(xPos,yPos,getWidth(),getHeight());
     }
