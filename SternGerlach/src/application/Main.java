@@ -22,7 +22,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Stern");
+        this.primaryStage.setTitle("Stern-Gerlach Experiment");
+        this.primaryStage.setMinHeight(600);
+        this.primaryStage.setMinWidth(800);
+       
 
         initRootLayout();
     }
@@ -37,6 +40,10 @@ public class Main extends Application {
             Scene scene = new Scene(layout);
             primaryStage.setScene(scene);
             primaryStage.show();
+            
+            String css = this.getClass().getResource("application.css").toExternalForm(); 
+            scene.getStylesheets().add(css);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,6 +51,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(Main.class, args);
     }
 }
