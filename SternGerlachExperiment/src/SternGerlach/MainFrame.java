@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import application.MenuBar;
+
 
 public class MainFrame extends JFrame {
 

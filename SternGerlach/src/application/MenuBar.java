@@ -1,4 +1,4 @@
-package SternGerlach;
+package application;
 
 import java.awt.HeadlessException;
 
