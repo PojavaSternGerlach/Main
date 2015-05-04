@@ -22,6 +22,12 @@
     -fx-background: #e2e2e2;
 }
 
+#probLabel{
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: black;
+}
+
 
 .menu-item {
 	-fx-background: rgb(120,120,120);

@@ -13,6 +13,6 @@
        text="Aby rozpocząć obliczenia, wybierz liczbę magnesów użytych w eksperymencie. Następnie przeciągając myszką
 ustaw kąt nachylenia każdego magnesu. Jeśli chcesz obserwować prawdopodobieństwo przejścia wiązki elektronów, zaznacz
 pole 'Prawdopodobieństwo'. Po ukończeniu konfiguracji naciśnij przycisk 'START' w celu rozpoczęcia obliczeń.
-Aby zobaczyć wyniki obliczeń dla przykładowych ustawień, naciśnij przycisk 'PRZYKŁAD'" wrappingWidth="310.13671875" />
+Aby zobaczyć wyniki obliczeń dla przykładowych ustawień, naciśnij przycisk 'PREZENTACJA'" wrappingWidth="310.13671875" />
    </children>
 </AnchorPane>

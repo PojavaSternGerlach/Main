@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 public class appController implements Initializable{
@@ -47,6 +48,16 @@ public class appController implements Initializable{
 	@FXML private Label magn1;
 	@FXML private Label magn2;
 	@FXML private Label magn3;
+	@FXML private Label ang1;
+	@FXML private Label ang2;
+	@FXML private Label ang3;	
+	@FXML private Label p1;
+	@FXML private Label p2;
+	@FXML private Label p3;
+	@FXML private Label p4;
+	@FXML private Label p5;
+	@FXML private Label p6;
+
 	
 	@FXML private CheckBox enable;
 	@FXML private CheckBox check1;
@@ -58,6 +69,8 @@ public class appController implements Initializable{
 	@FXML private Tab state;
 	@FXML private Tab sphere;
 	
+	@FXML private AnchorPane magnetsAnimate;
+	
 	@FXML private Box firstMagnet;
 	@FXML private Box secondMagnet;
 	@FXML private Box thirdMagnet;	
@@ -65,6 +78,14 @@ public class appController implements Initializable{
 	
 	private Stage dialogStage;
 	private AnchorPane layout;
+		
+	double theta1 = 0;
+	double theta2 = 0;
+	double theta3 = 0;
+	
+	double x,y;
+	double newX, newY;
+
 
 	
 	
@@ -76,6 +97,14 @@ public class appController implements Initializable{
 		check2.setSelected(true);
 		check2.setDisable(true);
 		check3.setSelected(true);
+		
+		p1.setVisible(false);
+		p2.setVisible(false);
+		p3.setVisible(false);
+		p4.setVisible(false);
+		p5.setVisible(false);
+		p6.setVisible(false);
+		
 		
 		final PhongMaterial material = new PhongMaterial();
 	    material.setSpecularColor(Color.LIGHTGREY);
@@ -104,12 +133,6 @@ public class appController implements Initializable{
                 System.exit(0);
             }
         });
-		firstMagnet.setOnMousePressed(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent event) {
-	            System.out.println("mouse click detected! "+event.getSource());
-	        }
-	    });
 		polishMenu.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				lang = Polish;
@@ -229,7 +252,28 @@ public class appController implements Initializable{
 				}
 			}
 		});
+		enable.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+				if(!enable.isSelected()){
+					p1.setVisible(false);
+					p2.setVisible(false);
+					p3.setVisible(false);
+					p4.setVisible(false);
+					p5.setVisible(false);
+					p6.setVisible(false);
+				}
+				else{
+					p1.setVisible(true);
+					p2.setVisible(true);
+					p3.setVisible(true);
+					p4.setVisible(true);
+					p5.setVisible(true);
+					p6.setVisible(true);
 
+			}}
+		});
+
+		
 	}
 	
 	private void SetLanguage(){
@@ -253,6 +297,45 @@ public class appController implements Initializable{
 		magn1.setText(bundle.getString("component")+" 1:");
 		magn2.setText(bundle.getString("component")+" 2:");
 		magn3.setText(bundle.getString("component")+" 3:");
+		ang1.setText(Integer.toString((int)theta1) + " " + bundle.getString("deg"));
+		ang2.setText(Integer.toString((int)theta2) + " " + bundle.getString("deg"));
+		ang3.setText(Integer.toString((int)theta3) + " " + bundle.getString("deg"));
 	}
 
-}
+	@FXML
+    public void mousePressed(MouseEvent e) {
+        x = e.getSceneX();
+        y = e.getSceneY();
+    }
+	
+	@FXML
+    public void mouseDragged(MouseEvent e) {
+		
+		
+		newY = e.getSceneY();
+        
+        double dy = newY-y;
+        Rotate rotation = new Rotate(dy/180);
+        rotation.setAxis(Rotate.Y_AXIS);
+        
+        if ((y<340 && y>280)&&(x<265 && x>210)){
+          	 secondMagnet.getTransforms().add(rotation);
+          	 theta2 -= dy/180;
+          	 if (theta2>360)
+          		 theta2-=360;
+          	if (theta2<-360)
+         		 theta2+=360;
+          	 ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+           }
+        if ((y<300 && y>220)&&(x<380 && x>320)){
+          	 thirdMagnet.getTransforms().add(rotation);
+          	 theta3 -=dy/180;
+          	 if (theta3>360)
+          		 theta3-=360;
+          	if (theta3<-360)
+         		 theta3+=360;
+          	 ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+           }
+        }
+    }
+
