@@ -1,7 +1,6 @@
 package application;
 	
 import java.io.IOException;
-import java.util.Locale;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +11,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	Locale Polish = new Locale("Polish", "Poland","pl");
-	Locale lang = Locale.ENGLISH;
-	
 	private Stage primaryStage;
     private AnchorPane layout;
     
@@ -23,8 +19,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Stern-Gerlach Experiment");
-        this.primaryStage.setMinHeight(600);
-        this.primaryStage.setMinWidth(800);
+        this.primaryStage.setMinHeight(550);
+        this.primaryStage.setMinWidth(810);
        
 
         initRootLayout();
