@@ -15,6 +15,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 
 public class appController implements Initializable{
@@ -40,7 +42,12 @@ public class appController implements Initializable{
 	@FXML private Label magn1;
 	@FXML private Label magn2;
 	@FXML private Label magn3;
+	
 	@FXML private CheckBox enable;
+	@FXML private CheckBox check1;
+	@FXML private CheckBox check2;
+	@FXML private CheckBox check3;
+	
 	@FXML private Button example;	
 	
 	@FXML private Tab state;
@@ -48,16 +55,32 @@ public class appController implements Initializable{
 	
 	@FXML private Box firstMagnet;
 	@FXML private Box secondMagnet;
-	@FXML private Box thirdMagnet;
+	@FXML private Box thirdMagnet;	
+	@FXML private Box ekran;
+
 	
-	
-	
-	private double theta1, theta2, theta3;
-	private int x,y;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		check1.setSelected(true);
+		check1.setDisable(true);
+		check2.setSelected(true);
+		check2.setDisable(true);
+		check3.setSelected(true);
+		
+		final PhongMaterial material = new PhongMaterial();
+	    material.setSpecularColor(Color.LIGHTGREY);
+	    material.setDiffuseColor(Color.LIGHTYELLOW);
+	    ekran.setMaterial(material);
+	       
+	    final PhongMaterial magnets = new PhongMaterial();
+	    magnets.setSpecularColor(Color.GREEN);
+	    magnets.setDiffuseColor(Color.CHARTREUSE);
+	    firstMagnet.setMaterial(magnets);
+	    secondMagnet.setMaterial(magnets);
+	    thirdMagnet.setMaterial(magnets);
+
 		
 		menuSave.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -79,7 +102,6 @@ public class appController implements Initializable{
 	            System.out.println("mouse click detected! "+event.getSource());
 	        }
 	    });
-		//TODO: wersje jezykowe
 		polishMenu.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				lang = Polish;
@@ -90,6 +112,29 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 				lang = Locale.ENGLISH;
 				SetLanguage();
+			}
+		});
+		check2.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+				if(!check2.isSelected()){
+					secondMagnet.setVisible(false);
+					check3.setDisable(true);
+				}
+				else{
+					secondMagnet.setVisible(true);
+					check3.setDisable(false);
+			}}
+		});
+		check3.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+				if(check3.isSelected()){
+					thirdMagnet.setVisible(true);
+					check2.setDisable(true);
+				}
+				else{
+					thirdMagnet.setVisible(false);
+					check2.setDisable(false);
+				}
 			}
 		});
 		
