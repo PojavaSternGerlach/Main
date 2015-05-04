@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -7,7 +8,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -15,9 +18,11 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.stage.Stage;
 
 public class appController implements Initializable{
 
@@ -57,6 +62,9 @@ public class appController implements Initializable{
 	@FXML private Box secondMagnet;
 	@FXML private Box thirdMagnet;	
 	@FXML private Box ekran;
+	
+	private Stage dialogStage;
+	private AnchorPane layout;
 
 	
 	
@@ -137,7 +145,91 @@ public class appController implements Initializable{
 				}
 			}
 		});
-		
+		manual.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+				if(lang == Locale.ENGLISH){
+					dialogStage = new Stage();
+					dialogStage.setTitle("Manual");
+					 try {
+				            FXMLLoader loader = new FXMLLoader();
+				            loader.setLocation(Main.class.getResource("manual.fxml"));
+				            layout = (AnchorPane) loader.load();
+
+				            Scene scene = new Scene(layout);
+				            dialogStage.setScene(scene);
+				            dialogStage.show();
+				            
+				            String css = this.getClass().getResource("application.css").toExternalForm(); 
+				            scene.getStylesheets().add(css);
+				            
+				        } catch (IOException ex) {
+				            ex.printStackTrace();
+				        }
+				}
+				else{
+					dialogStage = new Stage();
+					dialogStage.setTitle("Instrukcja");
+					 try {
+				            FXMLLoader loader = new FXMLLoader();
+				            loader.setLocation(Main.class.getResource("instrukcja.fxml"));
+				            layout = (AnchorPane) loader.load();
+
+				            Scene scene = new Scene(layout);
+				            dialogStage.setScene(scene);
+				            dialogStage.show();
+				            
+				            String css = this.getClass().getResource("application.css").toExternalForm(); 
+				            scene.getStylesheets().add(css);
+				            
+				        } catch (IOException ex) {
+				            ex.printStackTrace();
+				        }
+				}
+			}
+		});
+		menuAbout.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+				if(lang == Locale.ENGLISH){
+					dialogStage = new Stage();
+					dialogStage.setTitle("About experiment");
+					 try {
+				            FXMLLoader loader = new FXMLLoader();
+				            loader.setLocation(Main.class.getResource("about.fxml"));
+				            layout = (AnchorPane) loader.load();
+
+				            Scene scene = new Scene(layout);
+				            dialogStage.setScene(scene);
+				            dialogStage.show();
+				            
+				            String css = this.getClass().getResource("application.css").toExternalForm(); 
+				            scene.getStylesheets().add(css);
+				            
+				        } catch (IOException ex) {
+				            ex.printStackTrace();
+				        }
+				}
+				else{
+					dialogStage = new Stage();
+					dialogStage.setTitle("O eksperymencie");
+					 try {
+				            FXMLLoader loader = new FXMLLoader();
+				            loader.setLocation(Main.class.getResource("exp.fxml"));
+				            layout = (AnchorPane) loader.load();
+
+				            Scene scene = new Scene(layout);
+				            dialogStage.setScene(scene);
+				            dialogStage.show();
+				            
+				            String css = this.getClass().getResource("application.css").toExternalForm(); 
+				            scene.getStylesheets().add(css);
+				            
+				        } catch (IOException ex) {
+				            ex.printStackTrace();
+				        }
+				}
+			}
+		});
+
 	}
 	
 	private void SetLanguage(){

@@ -16,6 +16,13 @@
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
+#textpane{
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-background: #e2e2e2;
+}
+
+
 .menu-item {
 	-fx-background: rgb(120,120,120);
 }
