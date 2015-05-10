@@ -9,7 +9,8 @@
 <AnchorPane id="textpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manController">
    <children>	
      <Button fx:id="ok" layoutX="113.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="OK" AnchorPane.bottomAnchor="14.0" />
-      <Text layoutX="31.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doświadczenie Sterna-Gerlacha w oryginalnej wersji polegało na przepuszczeniu wiązki atomów  srebra przez niejednorodne pole magnetyczne i obserwacji obrazu wiązki na ekranie. Atomy srebra mają niezerowy własny moment pędu (spin) i związany z nim moment magnetyczny.  Oddziaływanie tego momentu magnetycznego z zewnętrznym polem magnetycznym zmienia tor ruchu atomu.  Zmiana ta zależy od orientacji wektora momentu pędu w przestrzeni, a dokładniej od wartości rzutu tego  wektora na kierunek zewnętrznego pola.  Wbrew postulatom mechaniki klasycznej, w doświadczeniu obserwuje się na ekranie dwie plamy,  zgodnie z przewidywaniem mechaniki kwantowej." wrappingWidth="310.13671875" />
-
+      <Text layoutX="31.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0"
+      text="Eksperyment polega na przepuszczeniu wiązki elektronów przez region niejednorodnego pola magnetycznego. Dipol magnetyczny dozna działania siły proporcjonalnej do gradientu pola, ponieważ na oba 'monopole' będą działać inne pola. W klasycznej wersji eksperymentu możnaby oczekiwać, że każda orientacja momentu dipolowego jest możliwa. W takim przypadku na ekranie pojawiłaby się ciągła dystrybucja rozmytych punktów. Natomiast w kwantowej wersji eksperymentu okazuje się, że pole rozdziela wiązkę tylko na dwie części. Dzieje się tak, ponieważ elektron posiada wewnętrzny moment pędu zwany spinowym momentem pędu."
+      wrappingWidth="310.13671875" />
    </children>
 </AnchorPane>

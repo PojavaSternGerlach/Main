@@ -6,16 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="textpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manController">
+<AnchorPane id="textpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manController">
    <children>	
-     <Button fx:id="ok" layoutX="124.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="OK" />
+     <Button fx:id="ok" layoutX="124.0" layoutY="298.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="OK" />
       <Text layoutX="31.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" 
-      text="Stern-Gerlach experiment demonstrates the quantization of spatial orientation 
-of angular momentum, and is important in the development of 'spin' physics. 
-Particles are sent through an inhomogeneous magnetic
-field to hit a screen. The particles have a magnetic moment related to their angular momentum, 
-and the magnetic field deflects the particles from their straight path. The screen shows discrete 
-points rather than a continuous distribution, owing to the quantum nature of spin." 
-wrappingWidth="350.13671875" />
+      text="In the experiment the beam of electrons is directed into a region of nonuniform magnetic field. A magnetic dipole moment will experience a force proportional to the field gradient since the two 'poles' will be subject to different fields. In classical version of the experiment one would expect that every orientation of the dipole moment is possible. In that situation a continuous smear of dots would be produced on the screen. In the quantum version of the experiment it is found that that the field separates the beam into only two distinct parts. It happens because the electron has an intrinsic angular momentum called spin angular momentum."
+	  wrappingWidth="350.13671875" />
    </children>
 </AnchorPane>
