@@ -87,7 +87,9 @@ public class appController implements Initializable{
 	double theta3 = 0;
 	double x,y;
 	double newX, newY;
+	int on2=1, on3=1;
 
+    DecimalFormat df = new DecimalFormat("#.###");
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -149,23 +151,35 @@ public class appController implements Initializable{
 		check2.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(!check2.isSelected()){
+					p3.setText("");
+					p4.setText("");
 					secondMagnet.setVisible(false);
 					check3.setDisable(true);
+					on2 = 0;
 				}
 				else{
+					p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+					p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
 					secondMagnet.setVisible(true);
 					check3.setDisable(false);
+					on2 = 1;
 			}}
 		});
 		check3.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(check3.isSelected()){
+					p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+					p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
 					thirdMagnet.setVisible(true);
 					check2.setDisable(true);
+					on3 = 1;
 				}
 				else{
+					p5.setText("");
+					p6.setText("");
 					thirdMagnet.setVisible(false);
 					check2.setDisable(false);
+					on3 = 0;
 				}
 			}
 		});
@@ -342,13 +356,25 @@ public class appController implements Initializable{
          		 theta3+=360;
           	 ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
            }
-        DecimalFormat df = new DecimalFormat("#.###");
+        
         p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		if (on2 == 1){
 		p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
 		p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+		}
+		else if (on2 == 0){
+			p3.setText("");
+			p4.setText("");
+		}
+		if (on3 == 1){
 		p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
 		p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		}
+		else if (on3 == 0){
+			p5.setText("");
+			p6.setText("");
+		}
         }
     }
 
