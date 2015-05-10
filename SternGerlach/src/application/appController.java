@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -31,6 +32,7 @@ public class appController implements Initializable{
 	Locale lang = Locale.ENGLISH;
 	private ResourceBundle bundle;
 	
+	// FXML
 	@FXML private MenuItem menuSave;
 	@FXML private MenuItem menuClose;
 	@FXML private MenuItem polishMenu;
@@ -79,15 +81,13 @@ public class appController implements Initializable{
 	private Stage dialogStage;
 	private AnchorPane layout;
 		
+	// inicjalizacja zmiennych
 	double theta1 = 0;
 	double theta2 = 0;
 	double theta3 = 0;
-	
 	double x,y;
 	double newX, newY;
 
-
-	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -106,28 +106,27 @@ public class appController implements Initializable{
 		p6.setVisible(false);
 		
 		
+		// Kolorystyka animacji
 		final PhongMaterial material = new PhongMaterial();
 	    material.setSpecularColor(Color.LIGHTGREY);
 	    material.setDiffuseColor(Color.LIGHTYELLOW);
 	    ekran.setMaterial(material);
 	       
 	    final PhongMaterial magnets = new PhongMaterial();
-	    magnets.setSpecularColor(Color.GREEN);
-	    magnets.setDiffuseColor(Color.CHARTREUSE);
+	    magnets.setSpecularColor(Color.RED);
+	    magnets.setDiffuseColor(Color.RED);
 	    firstMagnet.setMaterial(magnets);
 	    secondMagnet.setMaterial(magnets);
 	    thirdMagnet.setMaterial(magnets);
 
-		
+		// Menu
 		menuSave.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
                 //TODO: zapisywanie do pliku
             }
         });
 		menuClose.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
                 System.exit(0);
@@ -145,6 +144,8 @@ public class appController implements Initializable{
 				SetLanguage();
 			}
 		});
+		
+		// sterowanie liczb¹ magnesów
 		check2.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(!check2.isSelected()){
@@ -168,6 +169,8 @@ public class appController implements Initializable{
 				}
 			}
 		});
+		
+		// instrukcja i opis eksperymentu
 		manual.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(lang == Locale.ENGLISH){
@@ -252,6 +255,8 @@ public class appController implements Initializable{
 				}
 			}
 		});
+		
+		// wyœwietlanie prawdopodobieñstwa
 		enable.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(!enable.isSelected()){
@@ -276,6 +281,7 @@ public class appController implements Initializable{
 		
 	}
 	
+	// jêzyk
 	private void SetLanguage(){
 		
 		bundle = ResourceBundle.getBundle("application.lang.lang",lang);
@@ -336,6 +342,13 @@ public class appController implements Initializable{
          		 theta3+=360;
           	 ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
            }
+        DecimalFormat df = new DecimalFormat("#.###");
+        p1.setText((df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p2.setText((df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p3.setText((df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		p4.setText((df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		p5.setText((df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta3/2)*Math.PI/180)),2)))));
+		p6.setText((df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta3/2)*Math.PI/180)),2)))));
         }
     }
 
