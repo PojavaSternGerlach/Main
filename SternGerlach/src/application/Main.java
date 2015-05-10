@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Stern-Gerlach Experiment");
-        this.primaryStage.setMinHeight(700);
+        this.primaryStage.setMinHeight(750);
         this.primaryStage.setMinWidth(1200);
        
         initRootLayout();
