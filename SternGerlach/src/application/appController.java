@@ -338,6 +338,7 @@ public class appController implements Initializable{
         Rotate rotation = new Rotate(dy/180);
         rotation.setAxis(Rotate.Y_AXIS);
         
+        if ((y<340 && y>280)&&(x<265 && x>210)&&(on2==1)){
           	 secondMagnet.getTransforms().add(rotation);
           	 theta2 -= dy/180;
           	 if (theta2>360)
@@ -346,6 +347,7 @@ public class appController implements Initializable{
          		 theta2+=360;
           	 ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
            }
+        if ((y<300 && y>220)&&(x<380 && x>320)&&(on3==1)){
           	 thirdMagnet.getTransforms().add(rotation);
           	 theta3 -=dy/180;
           	 if (theta3>360)
