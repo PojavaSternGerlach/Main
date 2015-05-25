@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -34,6 +36,9 @@ public class appController implements Initializable{
 	Locale Polish = new Locale("Polish", "Poland","pl");
 	Locale lang = Locale.ENGLISH;
 	private ResourceBundle bundle;
+	
+	final CategoryAxis xAxis = new CategoryAxis();
+    final NumberAxis yAxis = new NumberAxis();
 	
 	// FXML
 	@FXML private MenuItem menuSave;
@@ -84,7 +89,7 @@ public class appController implements Initializable{
 	@FXML private Box ekran;
 	@FXML private Sphere charge;
 	
-	@FXML private BarChart<String, Number> chart;
+	@FXML private BarChart<String, Number> chart=new BarChart<>(xAxis, yAxis);
 	
 	private Stage dialogStage;
 	private AnchorPane layout;
