@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
@@ -66,7 +67,8 @@ public class appController implements Initializable{
 	@FXML private CheckBox check2;
 	@FXML private CheckBox check3;
 	
-	@FXML private Button example;	
+	@FXML private Button example;
+	@FXML private Button start;
 	
 	@FXML private Tab state;
 	@FXML private Tab sphere;
@@ -78,6 +80,7 @@ public class appController implements Initializable{
 	@FXML private Box secondMagnet;
 	@FXML private Box thirdMagnet;	
 	@FXML private Box ekran;
+	@FXML private Sphere charge;
 	
 	private Stage dialogStage;
 	private AnchorPane layout;
@@ -111,6 +114,8 @@ public class appController implements Initializable{
 		p5.setVisible(false);
 		p6.setVisible(false);
 		
+		charge.setVisible(false);
+
 		
 		// Kolorystyka animacji
 		final PhongMaterial material = new PhongMaterial();
@@ -306,6 +311,14 @@ public class appController implements Initializable{
 
 			}}
 		});
+		start.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+
+				startCalculation();
+				repaint();
+
+			}}
+		);
 
 		
 	}
@@ -405,6 +418,10 @@ public class appController implements Initializable{
 		thirdMagnet.setVisible(vM3);
 		secondMagnet.setVisible(vM2);
 		firstMagnet.setVisible(true);
+	}
+	
+	void startCalculation(){
+		charge.setVisible(true);
 	}
     }
 
