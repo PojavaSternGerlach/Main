@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -82,6 +84,8 @@ public class appController implements Initializable{
 	@FXML private Box ekran;
 	@FXML private Sphere charge;
 	
+	@FXML private BarChart<String, Number> chart;
+	
 	private Stage dialogStage;
 	private AnchorPane layout;
 	
@@ -98,6 +102,7 @@ public class appController implements Initializable{
 
     DecimalFormat df = new DecimalFormat("#.###");
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -116,6 +121,20 @@ public class appController implements Initializable{
 		
 		charge.setVisible(false);
 
+		//wykres
+		XYChart.Data<String, Integer> up = new XYChart.Data<String, Integer>("up", 60);
+        XYChart.Data<String, Integer> down = new XYChart.Data<String, Integer>("down", 40);
+        
+        XYChart.Series series1 = new XYChart.Series();
+        series1.getData().add(up);
+        series1.getData().add(down);
+        // czysci: series1.getData().clear();
+        chart.setMaxHeight(180);
+        chart.setMaxWidth(200);
+        chart.getData().addAll(series1);
+        chart.setLegendVisible(false);
+       
+		
 		
 		// Kolorystyka animacji
 		final PhongMaterial material = new PhongMaterial();
