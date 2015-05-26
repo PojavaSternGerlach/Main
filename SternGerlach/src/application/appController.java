@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,9 +34,13 @@ import javafx.stage.Stage;
 
 public class appController implements Initializable{
 
+	//ustawienia jezyka
 	Locale Polish = new Locale("Polish", "Poland","pl");
 	Locale lang = Locale.ENGLISH;
 	private ResourceBundle bundle;
+	
+	//obecnie modyfikowane zmienne
+	private Boolean settingMode = true;
 	
 	final CategoryAxis xAxis = new CategoryAxis();
     final NumberAxis yAxis = new NumberAxis();
@@ -91,13 +96,13 @@ public class appController implements Initializable{
 	
 	@FXML private BarChart<String, Number> chart=new BarChart<>(xAxis, yAxis);
 	
+	// inicjalizacja zmiennych
 	private Stage dialogStage;
 	private AnchorPane layout;
 	
 	boolean vM2 = true;
 	boolean vM3 = true;
 		
-	// inicjalizacja zmiennych
 	double theta1 = 0;
 	double theta2 = 0;
 	double theta3 = 0;
@@ -111,6 +116,7 @@ public class appController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		//poczatkowe ustawienia wyswietlania
 		check1.setSelected(true);
 		check1.setDisable(true);
 		check2.setSelected(true);
@@ -126,7 +132,7 @@ public class appController implements Initializable{
 		
 		charge.setVisible(false);
 
-		//wykres
+		//wykres - TODO
 		XYChart.Data<String, Integer> up = new XYChart.Data<String, Integer>("up", 60);
         XYChart.Data<String, Integer> down = new XYChart.Data<String, Integer>("down", 40);
         
@@ -339,7 +345,15 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				startCalculation();
-				repaint();
+			/*
+				charge.setVisible(false);
+				charge.setTranslateY(0);
+				
+				check2.setDisable(false);
+				check3.setDisable(false);
+				settingMode = true;
+			*/	
+				
 
 			}}
 		);
@@ -374,6 +388,8 @@ public class appController implements Initializable{
 		ang3.setText(Integer.toString((int)theta3) + " " + bundle.getString("deg"));
 	}
 
+	
+	//poruszanie magnesami
 	@FXML
     public void mousePressed(MouseEvent e) {
         x = e.getSceneX();
@@ -383,56 +399,58 @@ public class appController implements Initializable{
 	@FXML
     public void mouseDragged(MouseEvent e) {
 		
-		
-		newY = e.getSceneY();
+		if(settingMode){
+			
+			newY = e.getSceneY();
         
-        double dy = newY-y;
-        Rotate rotation = new Rotate(dy/180);
-        rotation.setAxis(Rotate.Y_AXIS);
+			double dy = newY-y;
+			Rotate rotation = new Rotate(dy/180);
+			rotation.setAxis(Rotate.Y_AXIS);
         
-        if ((y<340 && y>280)&&(x<265 && x>210)&&(on2==1)){
-          	 secondMagnet.getTransforms().add(rotation);
-          	 theta2 -= dy/180;
-          	 if (theta2>360)
-          		 theta2-=360;
-          	if (theta2<-360)
-         		 theta2+=360;
-          	 ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
-          	 repaint();
-        }
-        if ((y<300 && y>220)&&(x<380 && x>320)&&(on3==1)){
-          	 thirdMagnet.getTransforms().add(rotation);
-          	 theta3 -=dy/180;
-          	 if (theta3>360)
-          		 theta3-=360;
-          	if (theta3<-360)
-         		 theta3+=360;
-          	 ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
-          	 repaint();
-           }
+			if ((y<340 && y>280)&&(x<265 && x>210)&&(on2==1)){
+				secondMagnet.getTransforms().add(rotation);
+				theta2 -= dy/180;
+				if (theta2>360)
+					theta2-=360;
+				if (theta2<-360)
+					theta2+=360;
+				ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+				repaint();
+			}
+			if ((y<300 && y>220)&&(x<380 && x>320)&&(on3==1)){
+				thirdMagnet.getTransforms().add(rotation);
+				theta3 -=dy/180;
+				if (theta3>360)
+					theta3-=360;
+				if (theta3<-360)
+					theta3+=360;
+				ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+				repaint();
+			}
         
-        p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
-		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
-		if (on2 == 1){
-		p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-		p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
-		}
-		else if (on2 == 0){
-			p3.setText("");
-			p4.setText("");
-		}
-		if (on3 == 1){
-		p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-		p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-		}
-		else if (on3 == 0){
-			p5.setText("");
-			p6.setText("");
-		}
-        }
+			p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+			p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+			if (on2 == 1){
+				p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+				p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+			}
+			else if (on2 == 0){
+				p3.setText("");
+				p4.setText("");
+			}
+			if (on3 == 1){
+				p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			}
+			else if (on3 == 0){
+				p5.setText("");
+				p6.setText("");
+			}
+       	}
+	}
 	
 	
-	void repaint(){
+	void repaint(){//odswiezanie ekranu
 		firstMagnet.setVisible(false);
 		secondMagnet.setVisible(false);
 		thirdMagnet.setVisible(false);
@@ -444,8 +462,47 @@ public class appController implements Initializable{
 		firstMagnet.setVisible(true);
 	}
 	
-	void startCalculation(){
+	void startCalculation(){//inicjalizacja animacji - TODO: ogarniecie animacji do konca
 		charge.setVisible(true);
+		
+		check2.setDisable(true);
+		check3.setDisable(true);
+		settingMode = false;
+		
+		Task<Void> task = new Task<Void>() {
+		    @Override public Void call() {
+		        for (int i=1; i<380; i++) {
+		            if (isCancelled()) {
+		               break;
+		            }
+		            charge.setTranslateY(charge.getTranslateY()+1);
+		    		firstMagnet.setVisible(false);
+		    		secondMagnet.setVisible(false);
+		    		thirdMagnet.setVisible(false);
+		    		ekran.setVisible(false);
+		    		
+		    		ekran.setVisible(true);
+		    		thirdMagnet.setVisible(vM3);
+		    		secondMagnet.setVisible(vM2);
+		    		firstMagnet.setVisible(true);
+		            try {
+		            	Thread.sleep(10);
+		            } catch (InterruptedException e) {
+		            	e.printStackTrace();
+		            }
+		        }
+		        return null;
+		    }
+		};
+		
+		new Thread(task).start();
+		
+		}
+				
+	
+	
+	void resize(int width, int height){//zmiana rozdzielczosci ekranu - TODO
+		
 	}
     }
 
