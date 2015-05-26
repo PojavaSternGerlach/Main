@@ -345,14 +345,6 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				startCalculation();
-			/*
-				charge.setVisible(false);
-				charge.setTranslateY(0);
-				
-				check2.setDisable(false);
-				check3.setDisable(false);
-				settingMode = true;
-			*/	
 				
 
 			}}
@@ -469,6 +461,7 @@ public class appController implements Initializable{
 		check3.setDisable(true);
 		settingMode = false;
 		
+		
 		Task<Void> task = new Task<Void>() {
 		    @Override public Void call() {
 		        for (int i=1; i<380; i++) {
@@ -490,6 +483,23 @@ public class appController implements Initializable{
 		            } catch (InterruptedException e) {
 		            	e.printStackTrace();
 		            }
+		            if(i==379){
+		    			
+		            	try {
+			            	Thread.sleep(100);
+			            } catch (InterruptedException e) {
+			            	e.printStackTrace();
+			            }
+		            	cancel();
+		            	
+						charge.setVisible(false);
+						charge.setTranslateY(0);
+						
+						check2.setDisable(false);
+						check3.setDisable(false);
+						settingMode = true;
+		            }
+		            	
 		        }
 		        return null;
 		    }
