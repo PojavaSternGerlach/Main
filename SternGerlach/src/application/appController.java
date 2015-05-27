@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -7,12 +8,14 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.concurrent.Task;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -23,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -30,7 +34,10 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
 
 public class appController implements Initializable{
 
@@ -166,6 +173,19 @@ public class appController implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 //TODO: zapisywanie do pliku
+            	chart.setAnimated(false);
+            	WritableImage image = chart.snapshot(new SnapshotParameters(), null);
+
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save Image");
+                File file = fileChooser.showSaveDialog(dialogStage);
+                
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+                } catch (IOException e) {
+                    // TODO: handle exception here
+                }
+                chart.setAnimated(true);
             }
         });
 		menuClose.setOnAction(new EventHandler<ActionEvent>() {
@@ -346,16 +366,16 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				startCalculation();
-				on3=1;
+				//on3=1;
 				series1.getData().clear();
-				if (on3 == 1){
+				//if (on3 == 1){
 		        series1.getData().add(new XYChart.Data<String, Double>("up", (0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2))));
 		        series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-				}
-				else if (on2 == 1){
-				series1.getData().add(new XYChart.Data<String, Double>("up", ((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-			    series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
-				}
+				//}
+				//else if (on2 == 1){
+				//series1.getData().add(new XYChart.Data<String, Double>("up", ((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+			    //series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+				//}
 				
 			}}
 		);
