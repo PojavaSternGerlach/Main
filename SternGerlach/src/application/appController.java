@@ -42,9 +42,11 @@ public class appController implements Initializable{
 	//obecnie modyfikowane zmienne
 	private Boolean settingMode = true;
 	
+	// inicjalizacja osi wykresu
 	final CategoryAxis xAxis = new CategoryAxis();
-    final NumberAxis yAxis = new NumberAxis();
-	
+    final NumberAxis yAxis = new NumberAxis(0,100,10);
+	//yAxis.setAutoRanging(false);
+    
 	// FXML
 	@FXML private MenuItem menuSave;
 	@FXML private MenuItem menuClose;
@@ -94,7 +96,7 @@ public class appController implements Initializable{
 	@FXML private Box ekran;
 	@FXML private Sphere charge;
 	
-	@FXML private BarChart<String, Number> chart=new BarChart<>(xAxis, yAxis);
+	@FXML private BarChart<String,Number> chart = new BarChart<String,Number>(xAxis,yAxis);  
 	
 	// inicjalizacja zmiennych
 	private Stage dialogStage;
@@ -111,7 +113,7 @@ public class appController implements Initializable{
 	int on2=1, on3=1;
 
     DecimalFormat df = new DecimalFormat("#.###");
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -133,19 +135,18 @@ public class appController implements Initializable{
 		charge.setVisible(false);
 
 		//wykres - TODO
-		XYChart.Data<String, Integer> up = new XYChart.Data<String, Integer>("up", 60);
-        XYChart.Data<String, Integer> down = new XYChart.Data<String, Integer>("down", 40);
-        
         XYChart.Series series1 = new XYChart.Series();
+        
+		XYChart.Data<String, Integer> up = new XYChart.Data<String, Integer>("up", 0);
+        XYChart.Data<String, Integer> down = new XYChart.Data<String, Integer>("down", 0);
+        
         series1.getData().add(up);
         series1.getData().add(down);
-        // czysci: series1.getData().clear();
-        chart.setMaxHeight(180);
-        chart.setMaxWidth(200);
+        
+        chart.setMaxHeight(250);
+        chart.setMaxWidth(250);
         chart.getData().addAll(series1);
         chart.setLegendVisible(false);
-       
-		
 		
 		// Kolorystyka animacji
 		final PhongMaterial material = new PhongMaterial();
@@ -345,8 +346,17 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				startCalculation();
+				on3=1;
+				series1.getData().clear();
+				if (on3 == 1){
+		        series1.getData().add(new XYChart.Data<String, Double>("up", (0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2))));
+		        series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				}
+				else if (on2 == 1){
+				series1.getData().add(new XYChart.Data<String, Double>("up", ((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+			    series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+				}
 				
-
 			}}
 		);
 
@@ -460,7 +470,6 @@ public class appController implements Initializable{
 		check2.setDisable(true);
 		check3.setDisable(true);
 		settingMode = false;
-		
 		
 		Task<Void> task = new Task<Void>() {
 		    @Override public Void call() {
