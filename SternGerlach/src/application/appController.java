@@ -172,20 +172,17 @@ public class appController implements Initializable{
 		menuSave.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO: zapisywanie do pliku
             	chart.setAnimated(false);
             	WritableImage image = chart.snapshot(new SnapshotParameters(), null);
-
+                chart.setAnimated(true);
+                
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Save Image");
                 File file = fileChooser.showSaveDialog(dialogStage);
                 
                 try {
                     ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-                } catch (IOException e) {
-                    // TODO: handle exception here
-                }
-                chart.setAnimated(true);
+                } catch (IOException e) {}
             }
         });
 		menuClose.setOnAction(new EventHandler<ActionEvent>() {
@@ -369,8 +366,8 @@ public class appController implements Initializable{
 				//on3=1;
 				series1.getData().clear();
 				//if (on3 == 1){
-		        series1.getData().add(new XYChart.Data<String, Double>("up", (0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2))));
-		        series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		        series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		        series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
 				//}
 				//else if (on2 == 1){
 				//series1.getData().add(new XYChart.Data<String, Double>("up", ((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
