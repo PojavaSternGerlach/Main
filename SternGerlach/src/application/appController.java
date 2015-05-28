@@ -93,6 +93,9 @@ public class appController implements Initializable{
 	
 	@FXML private Tab state;
 	@FXML private Tab sphere;
+	@FXML private Tab sphere2;
+	@FXML private Tab sphere3;
+	@FXML private Tab sphere4;
 	
 	@FXML private AnchorPane magnetsAnimate;
 	@FXML private AnchorPane magnetsRot;
@@ -102,6 +105,9 @@ public class appController implements Initializable{
 	@FXML private Box thirdMagnet;	
 	@FXML private Box ekran;
 	@FXML private Sphere charge;
+	@FXML private Sphere charge2;
+	@FXML private Sphere charge3;
+	@FXML private Sphere charge4;
 	
 	@FXML private BarChart<String,Number> chart = new BarChart<String,Number>(xAxis,yAxis);  
 	
@@ -491,11 +497,43 @@ public class appController implements Initializable{
 		
 		Task<Void> task = new Task<Void>() {
 		    @Override public Void call() {
-		        for (int i=1; i<380; i++) {
+		        for (int i=1; i<18; i++) {
 		            if (isCancelled()) {
 		               break;
 		            }
 		            charge.setTranslateY(charge.getTranslateY()+1);
+		    		
+		            try {
+		            	Thread.sleep(10);
+		            } catch (InterruptedException e) {
+		            	e.printStackTrace();
+		            }
+		            if(i==16){
+		    			
+		            	cancel();
+		            	
+						charge.setVisible(false);
+						charge.setTranslateY(0);
+						
+		            }
+		            	
+		        }
+		        return null;
+		    }
+		};
+		Task<Void> task1 = new Task<Void>() {
+		    @Override public Void call() {
+		    	try {
+	            	Thread.sleep(170);
+	            } catch (InterruptedException e) {
+	            	e.printStackTrace();
+	            }
+				charge2.setVisible(true);
+		        for (int i=1; i<117; i++) {
+		        	 if (isCancelled()) {
+		               break;
+		            }
+		            charge2.setTranslateY(charge2.getTranslateY()+1);
 		    		firstMagnet.setVisible(false);
 		    		secondMagnet.setVisible(false);
 		    		thirdMagnet.setVisible(false);
@@ -510,22 +548,97 @@ public class appController implements Initializable{
 		            } catch (InterruptedException e) {
 		            	e.printStackTrace();
 		            }
-		            if(i==379){
+		            if(i==115){
 		    			
-		            	try {
-			            	Thread.sleep(100);
-			            } catch (InterruptedException e) {
-			            	e.printStackTrace();
-			            }
 		            	cancel();
 		            	
-						charge.setVisible(false);
-						charge.setTranslateY(0);
+						charge2.setVisible(false);
+						charge2.setTranslateY(0);
 						
-						check2.setDisable(false);
-						check3.setDisable(false);
+		            }
+		            	
+		        }
+		        return null;
+		    }
+		};
+		Task<Void> task2 = new Task<Void>() {
+		    @Override public Void call() {
+		    	try {
+	            	Thread.sleep(170+1170);
+	            } catch (InterruptedException e) {
+	            	e.printStackTrace();
+	            }
+				charge3.setVisible(true);
+		        for (int i=1; i<117; i++) {
+		        	 if (isCancelled()) {
+		               break;
+		            }
+		            charge3.setTranslateY(charge3.getTranslateY()+1);
+		    		firstMagnet.setVisible(false);
+		    		secondMagnet.setVisible(false);
+		    		thirdMagnet.setVisible(false);
+		    		ekran.setVisible(false);
+		    		
+		    		ekran.setVisible(true);
+		    		thirdMagnet.setVisible(vM3);
+		    		secondMagnet.setVisible(vM2);
+		    		firstMagnet.setVisible(true);
+		            try {
+		            	Thread.sleep(10);
+		            } catch (InterruptedException e) {
+		            	e.printStackTrace();
+		            }
+		            if(i==115){
+		    			
+		            	cancel();
+		            	
+						charge3.setVisible(false);
+						charge3.setTranslateY(0);
+						
+		            }
+		            	
+		        }
+		        return null;
+		    }
+		};
+		Task<Void> task3 = new Task<Void>() {
+		    @Override public Void call() {
+				try {
+	            	Thread.sleep(170+2*1170);
+	            } catch (InterruptedException e) {
+	            	e.printStackTrace();
+	            }
+				charge4.setVisible(true);
+		        for (int i=1; i<130; i++) {
+		        	 if (isCancelled()) {
+		               break;
+		            }
+		            charge4.setTranslateY(charge4.getTranslateY()+1);
+		    		firstMagnet.setVisible(false);
+		    		secondMagnet.setVisible(false);
+		    		thirdMagnet.setVisible(false);
+		    		ekran.setVisible(false);
+		    		
+		    		ekran.setVisible(true);
+		    		thirdMagnet.setVisible(vM3);
+		    		secondMagnet.setVisible(vM2);
+		    		firstMagnet.setVisible(true);
+		            try {
+		            	Thread.sleep(10);
+		            } catch (InterruptedException e) {
+		            	e.printStackTrace();
+		            }
+		            if(i==128){
+		    			
+		            	cancel();
+		            	
+						charge4.setVisible(false);
+						charge4.setTranslateY(0);
 						start.setDisable(false);
 						settingMode = true;
+						check2.setDisable(false);
+						check3.setDisable(false);
+						
 		            }
 		            	
 		        }
@@ -533,7 +646,12 @@ public class appController implements Initializable{
 		    }
 		};
 		
+		
 		new Thread(task).start();
+		new Thread(task1).start();
+		new Thread(task2).start();
+		new Thread(task3).start();
+		
 		
 		}
 				

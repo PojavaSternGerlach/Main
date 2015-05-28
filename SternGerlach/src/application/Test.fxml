@@ -21,22 +21,25 @@
                         <Point3D y="1.0" />
                      </rotationAxis>
                   </Box>
+                  <Sphere fx:id="charge4" layoutX="100.0" layoutY="254.0" radius="5.0" visible="false"/>
                   <Box fx:id="thirdMagnet" depth="50.0" height="100.0" layoutX="100.0" layoutY="304.0" rotate="45.0" width="50.0">
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
                   </Box>
+                  <Sphere fx:id="charge3" layoutX="100.0" layoutY="134.0" radius="5.0" visible="false"/>
                   <Box fx:id="secondMagnet" depth="50.0" height="100.0" layoutX="100.0" layoutY="184.0" rotate="45.0" width="50.0">
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
                   </Box>
+                  <Sphere fx:id="charge2" layoutX="100.0" layoutY="17.0" radius="5.0" visible="false" />
                   <Box fx:id="firstMagnet" depth="50.0" height="100.0" layoutX="100.0" layoutY="67.0" rotate="45.0" width="50.0">
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
                   </Box>
-                  <Sphere fx:id="charge" layoutX="100.0" radius="10.0" />
+                  <Sphere fx:id="charge" layoutX="100.0" radius="5.0" />
                </children>
                <rotationAxis>
                   <Point3D x="1.0" y="1.0" z="1.0" />
