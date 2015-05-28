@@ -484,6 +484,7 @@ public class appController implements Initializable{
 	void startCalculation(){//inicjalizacja animacji - TODO: ogarniecie animacji do konca
 		charge.setVisible(true);
 		
+		start.setDisable(true);
 		check2.setDisable(true);
 		check3.setDisable(true);
 		settingMode = false;
@@ -523,6 +524,7 @@ public class appController implements Initializable{
 						
 						check2.setDisable(false);
 						check3.setDisable(false);
+						start.setDisable(false);
 						settingMode = true;
 		            }
 		            	
