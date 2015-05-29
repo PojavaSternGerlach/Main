@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point3D;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.BarChart;
@@ -100,9 +101,17 @@ public class appController implements Initializable{
 	@FXML private AnchorPane magnetsAnimate;
 	@FXML private AnchorPane magnetsRot;
 	
-	@FXML private Box firstMagnet;
-	@FXML private Box secondMagnet;
-	@FXML private Box thirdMagnet;	
+	@FXML private AnchorPane firstMagnet;
+	@FXML private AnchorPane secondMagnet;
+	@FXML private AnchorPane thirdMagnet;
+		
+	
+	@FXML private Box firstMagnet1;
+	@FXML private Box firstMagnet2;
+	@FXML private Box secondMagnet1;
+	@FXML private Box secondMagnet2;
+	@FXML private Box thirdMagnet1;
+	@FXML private Box thirdMagnet2;	
 	@FXML private Box ekran;
 	@FXML private Sphere charge;
 	@FXML private Sphere charge2;
@@ -170,9 +179,17 @@ public class appController implements Initializable{
 	    final PhongMaterial magnets = new PhongMaterial();
 	    magnets.setSpecularColor(Color.RED);
 	    magnets.setDiffuseColor(Color.RED);
-	    firstMagnet.setMaterial(magnets);
-	    secondMagnet.setMaterial(magnets);
-	    thirdMagnet.setMaterial(magnets);
+	    
+	    final PhongMaterial magnets2 = new PhongMaterial();
+	    magnets2.setSpecularColor(Color.CORNFLOWERBLUE);
+	    magnets2.setDiffuseColor(Color.DEEPSKYBLUE);
+	    
+	    firstMagnet1.setMaterial(magnets);
+	    firstMagnet2.setMaterial(magnets2);
+	    secondMagnet1.setMaterial(magnets);
+	    secondMagnet2.setMaterial(magnets2);
+	    thirdMagnet1.setMaterial(magnets);
+	    thirdMagnet2.setMaterial(magnets2);
 
 		// Menu
 		menuSave.setOnAction(new EventHandler<ActionEvent>() {
@@ -430,10 +447,16 @@ public class appController implements Initializable{
         
 			double dy = newY-y;
 			Rotate rotation = new Rotate(dy/180);
-			rotation.setAxis(Rotate.Y_AXIS);
+			Point3D axis = new Point3D(0,0,0); 
+			rotation.setAxis(axis.midpoint(0, 304, 0));
         
 			if ((y<340 && y>280)&&(x<265 && x>210)&&(on2==1)){
-				secondMagnet.getTransforms().add(rotation);
+				secondMagnet1.getTransforms().add(rotation);
+				secondMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta2)));
+				secondMagnet1.setTranslateX(15-15*Math.cos(Math.toRadians(-theta2)));
+				secondMagnet2.getTransforms().add(rotation);
+				secondMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta2)));
+				secondMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta2)));
 				theta2 -= dy/180;
 				if (theta2>360)
 					theta2-=360;
@@ -443,7 +466,12 @@ public class appController implements Initializable{
 				repaint();
 			}
 			if ((y<300 && y>220)&&(x<380 && x>320)&&(on3==1)){
-				thirdMagnet.getTransforms().add(rotation);
+				thirdMagnet1.getTransforms().add(rotation);
+				thirdMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
+				thirdMagnet1.setTranslateX(15-15*Math.cos(Math.toRadians(-theta3)));
+				thirdMagnet2.getTransforms().add(rotation);
+				thirdMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta3)));
+				thirdMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta3)));
 				theta3 -=dy/180;
 				if (theta3>360)
 					theta3-=360;
@@ -662,11 +690,6 @@ public class appController implements Initializable{
 		
 		
 		}
-				
 	
-	
-	void resize(int width, int height){//zmiana rozdzielczosci ekranu - TODO
-		
-	}
     }
 

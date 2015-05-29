@@ -14,31 +14,43 @@
    <children>
       <AnchorPane id="magnetsAnimate" layoutY="25.0" minHeight="500.0" minWidth="500.0" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="513.0" prefWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="35.0">
          <children>
-            <AnchorPane id="magnetsRot" layoutX="150.0" layoutY="64.0" prefHeight="415.0" prefWidth="200.0" rotate="-159.4" scaleY="1.2">
+            <AnchorPane id="magnetsRot" layoutX="150.0" layoutY="64.0" prefHeight="415.0" prefWidth="200.0" rotate="-156.8" scaleY="1.2">
                <children>
                   <Box fx:id="ekran" depth="150.0" layoutX="99.0" layoutY="390.0" rotate="-35.5" width="150.0">
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
                   </Box>
-                  <Sphere fx:id="charge4" layoutX="100.0" layoutY="254.0" radius="5.0" visible="false"/>
-                  <Box fx:id="thirdMagnet" depth="50.0" height="100.0" layoutX="100.0" layoutY="304.0" rotate="45.0" width="50.0">
+                  <Sphere fx:id="charge4" layoutX="100.0" layoutY="254.0" radius="5.0" visible="false" />
+                  <AnchorPane fx:id="thirdMagnet" prefHeight="200.0" prefWidth="200.0" rotate="135.0">
+                     <children>
+                        <Box fx:id="thirdMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="304.0" width="20.0" />
+                        <Box fx:id="thirdMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="304.0" width="20.0" />
+                     </children>
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
-                  </Box>
-                  <Sphere fx:id="charge3" layoutX="100.0" layoutY="134.0" radius="5.0" visible="false"/>
-                  <Box fx:id="secondMagnet" depth="50.0" height="100.0" layoutX="100.0" layoutY="184.0" rotate="45.0" width="50.0">
+                  </AnchorPane>
+                  <Sphere fx:id="charge3" layoutX="100.0" layoutY="134.0" radius="5.0" visible="false" />
+                  <AnchorPane fx:id="secondMagnet" prefHeight="200.0" prefWidth="200.0" rotate="135.0">
+                     <children>
+                        <Box fx:id="secondMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="184.0" width="20.0" />
+                        <Box fx:id="secondMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="184.0" width="20.0" />
+                     </children>
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
-                  </Box>
+                  </AnchorPane>
                   <Sphere fx:id="charge2" layoutX="100.0" layoutY="17.0" radius="5.0" visible="false" />
-                  <Box fx:id="firstMagnet" depth="50.0" height="100.0" layoutX="100.0" layoutY="67.0" rotate="45.0" width="50.0">
+                   <AnchorPane fx:id="firstMagnet" prefHeight="200.0" prefWidth="200.0" rotate="135.0">
+                     <children>
+                        <Box fx:id="firstMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="67.0" width="20.0" />
+                        <Box fx:id="firstMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="67.0" width="20.0" />
+                     </children>
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
-                  </Box>
+                  </AnchorPane>
                   <Sphere fx:id="charge" layoutX="100.0" radius="5.0" />
                </children>
                <rotationAxis>
