@@ -513,7 +513,9 @@ public class appController implements Initializable{
 		            	cancel();
 		            	
 						charge.setVisible(false);
+						System.out.println(charge.getTranslateY());
 						charge.setTranslateY(0);
+						
 						
 		            }
 		            	
@@ -524,12 +526,12 @@ public class appController implements Initializable{
 		Task<Void> task1 = new Task<Void>() {
 		    @Override public Void call() {
 		    	try {
-	            	Thread.sleep(170);
+	            	Thread.sleep(160);
 	            } catch (InterruptedException e) {
 	            	e.printStackTrace();
 	            }
 				charge2.setVisible(true);
-		        for (int i=1; i<117; i++) {
+		        for (int i=1; i<118; i++) {
 		        	 if (isCancelled()) {
 		               break;
 		            }
@@ -548,12 +550,15 @@ public class appController implements Initializable{
 		            } catch (InterruptedException e) {
 		            	e.printStackTrace();
 		            }
-		            if(i==115){
+		            if(i==117){
 		    			
 		            	cancel();
 		            	
 						charge2.setVisible(false);
+						System.out.println(charge2.getTranslateY()+charge2.getLayoutY());
+						System.out.println(charge3.getLayoutY());
 						charge2.setTranslateY(0);
+
 						
 		            }
 		            	
@@ -564,12 +569,12 @@ public class appController implements Initializable{
 		Task<Void> task2 = new Task<Void>() {
 		    @Override public Void call() {
 		    	try {
-	            	Thread.sleep(170+1170);
+	            	Thread.sleep(160+1190);
 	            } catch (InterruptedException e) {
 	            	e.printStackTrace();
 	            }
 				charge3.setVisible(true);
-		        for (int i=1; i<117; i++) {
+		        for (int i=1; i<121; i++) {
 		        	 if (isCancelled()) {
 		               break;
 		            }
@@ -588,12 +593,15 @@ public class appController implements Initializable{
 		            } catch (InterruptedException e) {
 		            	e.printStackTrace();
 		            }
-		            if(i==115){
+		            if(i==120){
 		    			
 		            	cancel();
 		            	
 						charge3.setVisible(false);
+						System.out.println(charge3.getTranslateY()+charge3.getLayoutY());
+						System.out.println(charge4.getLayoutY());
 						charge3.setTranslateY(0);
+
 						
 		            }
 		            	
@@ -604,7 +612,7 @@ public class appController implements Initializable{
 		Task<Void> task3 = new Task<Void>() {
 		    @Override public Void call() {
 				try {
-	            	Thread.sleep(170+2*1170);
+	            	Thread.sleep(180+1190+1220);
 	            } catch (InterruptedException e) {
 	            	e.printStackTrace();
 	            }
