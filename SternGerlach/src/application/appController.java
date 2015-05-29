@@ -558,6 +558,9 @@ public class appController implements Initializable{
 			secondMagnet1p.setVisible(!vM2);
 		}
 		firstMagnet.setVisible(true);
+		firstMagnet1.setVisible(true);
+		firstMagnet2.setVisible(true);
+		
 	}
 	
 	void startCalculation(){//inicjalizacja animacji - TODO: ogarniecie animacji do konca
