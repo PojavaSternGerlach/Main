@@ -26,6 +26,8 @@
                      <children>
                         <Box fx:id="thirdMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="304.0" width="20.0" />
                         <Box fx:id="thirdMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="304.0" width="20.0" />
+                        <Box fx:id="thirdMagnet2p" depth="50.0" height="100.0" layoutX="115.0" layoutY="304.0" width="20.0" visible="false"/>
+                        <Box fx:id="thirdMagnet1p" depth="50.0" height="100.0" layoutX="85.0" layoutY="304.0" width="20.0" visible="false"/>
                      </children>
                      <rotationAxis>
                         <Point3D y="1.0" />
@@ -36,6 +38,8 @@
                      <children>
                         <Box fx:id="secondMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="184.0" width="20.0" />
                         <Box fx:id="secondMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="184.0" width="20.0" />
+                        <Box fx:id="secondMagnet2p" depth="50.0" height="100.0" layoutX="115.0" layoutY="184.0" width="20.0" visible="false"/>
+                        <Box fx:id="secondMagnet1p" depth="50.0" height="100.0" layoutX="85.0" layoutY="184.0" width="20.0" visible="false"/>
                      </children>
                      <rotationAxis>
                         <Point3D y="1.0" />

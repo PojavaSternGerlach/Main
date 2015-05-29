@@ -112,6 +112,10 @@ public class appController implements Initializable{
 	@FXML private Box secondMagnet2;
 	@FXML private Box thirdMagnet1;
 	@FXML private Box thirdMagnet2;	
+	@FXML private Box secondMagnet1p;
+	@FXML private Box secondMagnet2p;
+	@FXML private Box thirdMagnet1p;
+	@FXML private Box thirdMagnet2p;	
 	@FXML private Box ekran;
 	@FXML private Sphere charge;
 	@FXML private Sphere charge2;
@@ -190,6 +194,10 @@ public class appController implements Initializable{
 	    secondMagnet2.setMaterial(magnets2);
 	    thirdMagnet1.setMaterial(magnets);
 	    thirdMagnet2.setMaterial(magnets2);
+	    secondMagnet1p.setMaterial(magnets);
+	    secondMagnet2p.setMaterial(magnets2);
+	    thirdMagnet1p.setMaterial(magnets);
+	    thirdMagnet2p.setMaterial(magnets2);
 
 		// Menu
 		menuSave.setOnAction(new EventHandler<ActionEvent>() {
@@ -457,6 +465,12 @@ public class appController implements Initializable{
 				secondMagnet2.getTransforms().add(rotation);
 				secondMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta2)));
 				secondMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta2)));
+				secondMagnet1p.getTransforms().add(rotation);
+				secondMagnet1p.setTranslateZ(15*Math.sin(Math.toRadians(-theta2)));
+				secondMagnet1p.setTranslateX(15-15*Math.cos(Math.toRadians(-theta2)));
+				secondMagnet2p.getTransforms().add(rotation);
+				secondMagnet2p.setTranslateX(-15+15*Math.cos(Math.toRadians(theta2)));
+				secondMagnet2p.setTranslateZ(15*Math.sin(Math.toRadians(theta2)));
 				theta2 -= dy/180;
 				if (theta2>360)
 					theta2-=360;
@@ -472,6 +486,12 @@ public class appController implements Initializable{
 				thirdMagnet2.getTransforms().add(rotation);
 				thirdMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta3)));
 				thirdMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta3)));
+				thirdMagnet1p.getTransforms().add(rotation);
+				thirdMagnet1p.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
+				thirdMagnet1p.setTranslateX(15-15*Math.cos(Math.toRadians(-theta3)));
+				thirdMagnet2p.getTransforms().add(rotation);
+				thirdMagnet2p.setTranslateX(-15+15*Math.cos(Math.toRadians(theta3)));
+				thirdMagnet2p.setTranslateZ(15*Math.sin(Math.toRadians(theta3)));
 				theta3 -=dy/180;
 				if (theta3>360)
 					theta3-=360;
@@ -511,7 +531,32 @@ public class appController implements Initializable{
 		
 		ekran.setVisible(true);
 		thirdMagnet.setVisible(vM3);
+		if(((theta3<-147 && theta3>-322)||(theta3<202 && theta3>35))&&vM3){
+			thirdMagnet1.setVisible(!vM3);
+			thirdMagnet2.setVisible(!vM3);
+			thirdMagnet1p.setVisible(vM3);
+			thirdMagnet2p.setVisible(vM3);
+		}
+		else{
+			thirdMagnet2.setVisible(vM3);
+			thirdMagnet1.setVisible(vM3);
+			thirdMagnet2p.setVisible(!vM3);
+			thirdMagnet1p.setVisible(!vM3);
+			
+		}
 		secondMagnet.setVisible(vM2);
+		if(((theta2<-147 && theta2>-322)||(theta2<202 && theta2>35))&&vM2){
+			secondMagnet1.setVisible(!vM2);
+			secondMagnet1.setVisible(!vM2);
+			secondMagnet1p.setVisible(vM2);
+			secondMagnet1p.setVisible(vM2);
+		}
+		else{
+			secondMagnet1.setVisible(vM2);
+			secondMagnet1.setVisible(vM2);
+			secondMagnet1p.setVisible(!vM2);
+			secondMagnet1p.setVisible(!vM2);
+		}
 		firstMagnet.setVisible(true);
 	}
 	
