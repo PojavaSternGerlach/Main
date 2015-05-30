@@ -407,6 +407,25 @@ public class appController implements Initializable{
 				
 			}}
 		);
+		example.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+
+				exampleCalc();
+				//on3=1;
+				series1.getData().clear();
+				//if (on3 == 1){
+		        series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		        series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				//}
+				//else if (on2 == 1){
+				//series1.getData().add(new XYChart.Data<String, Double>("up", ((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+			    //series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+				//}
+		        
+		        example.setDisable(true);
+				
+			}}
+		);
 
 		
 	}
@@ -738,6 +757,148 @@ public class appController implements Initializable{
 		
 		
 		}
+	
+	private void exampleCalc(){
+		
+		double dy = Math.random()*360*180;
+		double dy1 = Math.random()*360*180;
+		Rotate rotation = new Rotate(dy/180);
+		Rotate rotation1 = new Rotate(dy1/180);
+		Point3D axis = new Point3D(0,0,0); 
+		rotation.setAxis(axis.midpoint(0, 304, 0));
+		rotation1.setAxis(axis.midpoint(0, 304, 0));
+    
+		if ((on2==1)){
+			secondMagnet1.getTransforms().add(rotation);
+			secondMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta2)));
+			secondMagnet1.setTranslateX(15-15*Math.cos(Math.toRadians(-theta2)));
+			secondMagnet2.getTransforms().add(rotation);
+			secondMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta2)));
+			secondMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta2)));
+			secondMagnet1p.getTransforms().add(rotation);
+			secondMagnet1p.setTranslateZ(15*Math.sin(Math.toRadians(-theta2)));
+			secondMagnet1p.setTranslateX(15-15*Math.cos(Math.toRadians(-theta2)));
+			secondMagnet2p.getTransforms().add(rotation);
+			secondMagnet2p.setTranslateX(-15+15*Math.cos(Math.toRadians(theta2)));
+			secondMagnet2p.setTranslateZ(15*Math.sin(Math.toRadians(theta2)));
+			theta2 -= dy/180;
+			if (theta2>360)
+				theta2-=360;
+			if (theta2<-360)
+				theta2+=360;
+			ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+			repaint();
+		}
+		if ((on3==1)){
+			thirdMagnet1.getTransforms().add(rotation1);
+			thirdMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
+			thirdMagnet1.setTranslateX(15-15*Math.cos(Math.toRadians(-theta3)));
+			thirdMagnet2.getTransforms().add(rotation1);
+			thirdMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta3)));
+			thirdMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta3)));
+			thirdMagnet1p.getTransforms().add(rotation1);
+			thirdMagnet1p.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
+			thirdMagnet1p.setTranslateX(15-15*Math.cos(Math.toRadians(-theta3)));
+			thirdMagnet2p.getTransforms().add(rotation1);
+			thirdMagnet2p.setTranslateX(-15+15*Math.cos(Math.toRadians(theta3)));
+			thirdMagnet2p.setTranslateZ(15*Math.sin(Math.toRadians(theta3)));
+			theta3 -=dy1/180;
+			if (theta3>360)
+				theta3-=360;
+			if (theta3<-360)
+				theta3+=360;
+			ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+			repaint();
+		}
+    
+		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		if (on2 == 1){
+			p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+			p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+		}
+		else if (on2 == 0){
+			p3.setText("");
+			p4.setText("");
+		}
+		if (on3 == 1){
+			p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		}
+		else if (on3 == 0){
+			p5.setText("");
+			p6.setText("");
+		}
+		
+		dy = 180;
+		dy1= -180;
+		rotation = new Rotate(dy/180);
+		rotation1 = new Rotate(dy1/180);
+		axis = new Point3D(0,0,0); 
+		
+		if ((on2==1)){
+			secondMagnet1.getTransforms().add(rotation);
+			secondMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta2)));
+			secondMagnet1.setTranslateX(15-15*Math.cos(Math.toRadians(-theta2)));
+			secondMagnet2.getTransforms().add(rotation);
+			secondMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta2)));
+			secondMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta2)));
+			secondMagnet1p.getTransforms().add(rotation);
+			secondMagnet1p.setTranslateZ(15*Math.sin(Math.toRadians(-theta2)));
+			secondMagnet1p.setTranslateX(15-15*Math.cos(Math.toRadians(-theta2)));
+			secondMagnet2p.getTransforms().add(rotation);
+			secondMagnet2p.setTranslateX(-15+15*Math.cos(Math.toRadians(theta2)));
+			secondMagnet2p.setTranslateZ(15*Math.sin(Math.toRadians(theta2)));
+			theta2 -= dy/180;
+			if (theta2>360)
+				theta2-=360;
+			if (theta2<-360)
+				theta2+=360;
+			ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+			repaint();
+		}
+		if ((on3==1)){
+			thirdMagnet1.getTransforms().add(rotation1);
+			thirdMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
+			thirdMagnet1.setTranslateX(15-15*Math.cos(Math.toRadians(-theta3)));
+			thirdMagnet2.getTransforms().add(rotation1);
+			thirdMagnet2.setTranslateX(-15+15*Math.cos(Math.toRadians(theta3)));
+			thirdMagnet2.setTranslateZ(15*Math.sin(Math.toRadians(theta3)));
+			thirdMagnet1p.getTransforms().add(rotation1);
+			thirdMagnet1p.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
+			thirdMagnet1p.setTranslateX(15-15*Math.cos(Math.toRadians(-theta3)));
+			thirdMagnet2p.getTransforms().add(rotation1);
+			thirdMagnet2p.setTranslateX(-15+15*Math.cos(Math.toRadians(theta3)));
+			thirdMagnet2p.setTranslateZ(15*Math.sin(Math.toRadians(theta3)));
+			theta3 -=dy1/180;
+			if (theta3>360)
+				theta3-=360;
+			if (theta3<-360)
+				theta3+=360;
+			ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+			repaint();
+		}
+    
+		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		if (on2 == 1){
+			p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+			p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+		}
+		else if (on2 == 0){
+			p3.setText("");
+			p4.setText("");
+		}
+		if (on3 == 1){
+			p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		}
+		else if (on3 == 0){
+			p5.setText("");
+			p6.setText("");
+		}
+   			
+	}
 	
     }
 
