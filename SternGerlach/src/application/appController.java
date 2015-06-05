@@ -208,9 +208,13 @@ public class appController implements Initializable{
                 chart.setAnimated(true);
                 
                 FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Save Image");
+                //fileChooser.setTitle("Save Image");
+                
+                configureFileChooser(fileChooser);
+                
                 File file = fileChooser.showSaveDialog(dialogStage);
                 
+
                 if (file != null) {
                     try {
                         ImageIO.write(SwingFXUtils.fromFXImage(image,
@@ -905,6 +909,18 @@ public class appController implements Initializable{
 		}
    			
 	}
-	
-    }
 
+	private static void configureFileChooser(
+	        final FileChooser fileChooser) {      
+	            fileChooser.setTitle("Save Image");
+	            fileChooser.setInitialDirectory(
+	                new File(System.getProperty("user.home"))
+	            );                 
+	            fileChooser.getExtensionFilters().addAll(
+	                new FileChooser.ExtensionFilter("All Images", "*.*"),
+	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+	                new FileChooser.ExtensionFilter("PNG", "*.png")
+	            );
+	    }	
+	
+}
