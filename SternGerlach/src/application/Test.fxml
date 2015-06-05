@@ -104,7 +104,7 @@
                                   <CategoryAxis autoRanging="false" side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis autoRanging="false" forceZeroInRange="false" side="LEFT" tickLength="10.0" upperBound="50.0">
+                                  <NumberAxis autoRanging="false" forceZeroInRange="false" label="\%" side="LEFT" tickLength="10.0" tickMarkVisible="false" upperBound="50.0">
                                        <tickLabelFill>
                                           <LinearGradient endX="1.0" endY="1.0">
                                              <stops>
