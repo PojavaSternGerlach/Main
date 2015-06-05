@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -37,6 +39,7 @@ import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import javax.imageio.ImageIO;
 
@@ -51,9 +54,9 @@ public class appController implements Initializable{
 	private Boolean settingMode = true;
 	
 	// inicjalizacja osi wykresu
-	final CategoryAxis xAxis = new CategoryAxis();
-    final NumberAxis yAxis = new NumberAxis(0,100,10);
-	//yAxis.setAutoRanging(false);
+	CategoryAxis xAxis = new CategoryAxis();
+    NumberAxis yAxis = new NumberAxis(0,100,10);
+
     
 	// FXML
 	@FXML private MenuItem menuSave;
@@ -160,7 +163,28 @@ public class appController implements Initializable{
 		
 		charge.setVisible(false);
 
-		//wykres - TODO
+		NumberFormat format = new DecimalFormat("# %");
+	    yAxis.setTickLabelFormatter(new StringConverter<Number>() {
+
+	        @Override
+	        public String toString(Number number) {
+	            return format.format(number.doubleValue());
+	        }
+
+	        @Override
+	        public Number fromString(String string) {
+	            try {
+	                return format.parse(string);
+	            } catch (ParseException e) {
+	                e.printStackTrace();
+	                return 0 ;
+	            }
+	        }
+
+	    });
+		
+		
+		//wykres
         XYChart.Series series1 = new XYChart.Series();
         
 		XYChart.Data<String, Integer> up = new XYChart.Data<String, Integer>("up", 0);
@@ -173,7 +197,8 @@ public class appController implements Initializable{
         chart.setMaxWidth(250);
         chart.getData().addAll(series1);
         chart.setLegendVisible(false);
-		
+    	yAxis.setAutoRanging(false);
+    	
 		// Kolorystyka animacji
 		final PhongMaterial material = new PhongMaterial();
 	    material.setSpecularColor(Color.LIGHTGREY);
@@ -208,7 +233,6 @@ public class appController implements Initializable{
                 chart.setAnimated(true);
                 
                 FileChooser fileChooser = new FileChooser();
-                //fileChooser.setTitle("Save Image");
                 
                 configureFileChooser(fileChooser);
                 
