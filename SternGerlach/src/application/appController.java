@@ -183,7 +183,6 @@ public class appController implements Initializable{
 	    };
 	    yAxis.setTickLabelFormatter(sc);
 		
-		
 		//wykres
         XYChart.Series series1 = new XYChart.Series();
         
