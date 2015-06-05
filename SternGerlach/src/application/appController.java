@@ -55,7 +55,7 @@ public class appController implements Initializable{
 	
 	// inicjalizacja osi wykresu
 	CategoryAxis xAxis = new CategoryAxis();
-    NumberAxis yAxis = new NumberAxis(0,100,10);
+    NumberAxis yAxis = new NumberAxis(0,50,10);
 
     
 	// FXML
