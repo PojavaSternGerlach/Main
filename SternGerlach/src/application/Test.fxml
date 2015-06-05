@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
@@ -96,14 +97,22 @@
                 </Tab>
                 <Tab fx:id="sphere" text="Probability graph">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1d1d1d;">
                            <children>
-                              <BarChart fx:id="chart" animated="false" pickOnBounds="false" prefHeight="274.0" prefWidth="280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <BarChart fx:id="chart" pickOnBounds="false" prefHeight="274.0" prefWidth="280.0" title="Probability of spin measurement" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <xAxis>
-                                  <CategoryAxis animated="false" autoRanging="false" side="BOTTOM" />
+                                  <CategoryAxis autoRanging="false" side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis animated="false" autoRanging="false" side="LEFT" tickLength="10.0" upperBound="50.0" />
+                                  <NumberAxis autoRanging="false" forceZeroInRange="false" side="LEFT" tickLength="10.0" upperBound="50.0">
+                                       <tickLabelFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop color="#f26625" />
+                                                <Stop color="WHITE" offset="1.0" />
+                                             </stops>
+                                          </LinearGradient>
+                                       </tickLabelFill></NumberAxis>
                                 </yAxis>
                               </BarChart>
                            </children>

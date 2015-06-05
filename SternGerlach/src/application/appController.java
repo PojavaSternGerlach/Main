@@ -164,7 +164,7 @@ public class appController implements Initializable{
 		charge.setVisible(false);
 
 		NumberFormat format = new DecimalFormat("# %");
-	    yAxis.setTickLabelFormatter(new StringConverter<Number>() {
+		StringConverter<Number> sc = new StringConverter<Number>() {
 
 	        @Override
 	        public String toString(Number number) {
@@ -180,8 +180,8 @@ public class appController implements Initializable{
 	                return 0 ;
 	            }
 	        }
-
-	    });
+	    };
+	    yAxis.setTickLabelFormatter(sc);
 		
 		
 		//wykres
@@ -229,7 +229,7 @@ public class appController implements Initializable{
             @Override
             public void handle(ActionEvent event) {
             	chart.setAnimated(false);
-            	WritableImage image = chart.snapshot(new SnapshotParameters(), null);
+            	WritableImage image = (chart.getParent()).snapshot(new SnapshotParameters(), null);
                 chart.setAnimated(true);
                 
                 FileChooser fileChooser = new FileChooser();
