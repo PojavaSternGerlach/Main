@@ -211,9 +211,15 @@ public class appController implements Initializable{
                 fileChooser.setTitle("Save Image");
                 File file = fileChooser.showSaveDialog(dialogStage);
                 
-                try {
-                    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-                } catch (IOException e) {}
+                if (file != null) {
+                    try {
+                        ImageIO.write(SwingFXUtils.fromFXImage(image,
+                            null), "png", file);
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+                
             }
         });
 		menuClose.setOnAction(new EventHandler<ActionEvent>() {
