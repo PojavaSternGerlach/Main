@@ -444,6 +444,7 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				exampleCalc();
+
 				if (on3 == 1){
 					series1.getData().clear();
 					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
