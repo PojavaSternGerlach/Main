@@ -427,16 +427,16 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				startCalculation();
-				//on3=1;
-				series1.getData().clear();
-				//if (on3 == 1){
-		        series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-		        series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-				//}
-				//else if (on2 == 1){
-				//series1.getData().add(new XYChart.Data<String, Double>("up", ((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-			    //series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
-				//}
+				if (on3 == 1){
+					series1.getData().clear();
+					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				}
+				else if (on2 == 1){
+					series1.getData().clear();
+					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))))));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))))));
+				}
 				
 			}}
 		);
@@ -444,16 +444,16 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				exampleCalc();
-				//on3=1;
-				series1.getData().clear();
-				//if (on3 == 1){
-		        series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-		        series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-				//}
-				//else if (on2 == 1){
-				//series1.getData().add(new XYChart.Data<String, Double>("up", ((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-			    //series1.getData().add(new XYChart.Data<String, Double>("down", ((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
-				//}
+				if (on3 == 1){
+					series1.getData().clear();
+					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				}
+				else if (on2 == 1){
+					series1.getData().clear();
+					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))))));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))))));
+				}
 		        
 		        example.setDisable(true);
 				
@@ -556,16 +556,16 @@ public class appController implements Initializable{
 			p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 			p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 			if (on2 == 1){
-				p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-				p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+				p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+				p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
 			}
 			else if (on2 == 0){
 				p3.setText("");
 				p4.setText("");
 			}
 			if (on3 == 1){
-				p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-				p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				p6.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				p5.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
 			}
 			else if (on3 == 0){
 				p5.setText("");
@@ -847,16 +847,16 @@ public class appController implements Initializable{
 		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 		if (on2 == 1){
-			p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-			p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+			p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+			p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
 		}
 		else if (on2 == 0){
 			p3.setText("");
 			p4.setText("");
 		}
 		if (on3 == 1){
-			p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-			p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p6.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p5.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
 		}
 		else if (on3 == 0){
 			p5.setText("");
@@ -915,16 +915,16 @@ public class appController implements Initializable{
 		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 		if (on2 == 1){
-			p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-			p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+			p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+			p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
 		}
 		else if (on2 == 0){
 			p3.setText("");
 			p4.setText("");
 		}
 		if (on3 == 1){
-			p5.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-			p6.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p6.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p5.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
 		}
 		else if (on3 == 0){
 			p5.setText("");
