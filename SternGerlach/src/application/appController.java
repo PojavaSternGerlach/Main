@@ -427,6 +427,7 @@ public class appController implements Initializable{
 			@Override public void handle(ActionEvent e) {
 
 				startCalculation();
+				repaint();
 				//on3=1;
 				series1.getData().clear();
 				//if (on3 == 1){
@@ -625,11 +626,10 @@ public class appController implements Initializable{
 		
 		Task<Void> task = new Task<Void>() {
 		    @Override public Void call() {
-		        for (int i=1; i<18; i++) {
-		            if (isCancelled()) {
-		               break;
-		            }
+		        for (int i=1; i<17; i++) {
+		            
 		            charge.setTranslateY(charge.getTranslateY()+1);
+
 		    		
 		            try {
 		            	Thread.sleep(10);
@@ -637,156 +637,86 @@ public class appController implements Initializable{
 		            	e.printStackTrace();
 		            }
 		            if(i==16){
-		    			
-		            	cancel();
-		            	
 						charge.setVisible(false);
 						System.out.println(charge.getTranslateY());
 						charge.setTranslateY(0);
 						
-						
+					
 		            }
 		            	
 		        }
-		        return null;
-		    }
-		};
-		Task<Void> task1 = new Task<Void>() {
-		    @Override public Void call() {
-		    	try {
-	            	Thread.sleep(160);
-	            } catch (InterruptedException e) {
-	            	e.printStackTrace();
-	            }
-				charge2.setVisible(true);
-		        for (int i=1; i<118; i++) {
-		        	 if (isCancelled()) {
-		               break;
-		            }
-		            charge2.setTranslateY(charge2.getTranslateY()+1);
-		    		firstMagnet.setVisible(false);
-		    		secondMagnet.setVisible(false);
-		    		thirdMagnet.setVisible(false);
-		    		ekran.setVisible(false);
-		    		
-		    		ekran.setVisible(true);
-		    		thirdMagnet.setVisible(vM3);
-		    		secondMagnet.setVisible(vM2);
-		    		firstMagnet.setVisible(true);
+		        charge2.setVisible(true);
+				double trans = charge2.getTranslateY();
+		        for (int i=1; i<117; i++) {
+		        	
+		            charge2.setTranslateY(trans+i);
+
 		            try {
 		            	Thread.sleep(10);
 		            } catch (InterruptedException e) {
 		            	e.printStackTrace();
 		            }
-		            if(i==117){
-		    			
-		            	cancel();
-		            	
-						charge2.setVisible(false);
-						System.out.println(charge2.getTranslateY()+charge2.getLayoutY());
-						System.out.println(charge3.getLayoutY());
+		        }
+		            	charge2.setVisible(false);
 						charge2.setTranslateY(0);
 
-						
-		            }
-		            	
-		        }
-		        return null;
-		    }
-		};
-		Task<Void> task2 = new Task<Void>() {
-		    @Override public Void call() {
-		    	try {
-	            	Thread.sleep(160+1190);
-	            } catch (InterruptedException e) {
-	            	e.printStackTrace();
-	            }
-				charge3.setVisible(true);
-		        for (int i=1; i<121; i++) {
-		        	 if (isCancelled()) {
-		               break;
-		            }
-		            charge3.setTranslateY(charge3.getTranslateY()+1);
-		    		firstMagnet.setVisible(false);
-		    		secondMagnet.setVisible(false);
-		    		thirdMagnet.setVisible(false);
-		    		ekran.setVisible(false);
-		    		
-		    		ekran.setVisible(true);
-		    		thirdMagnet.setVisible(vM3);
-		    		secondMagnet.setVisible(vM2);
-		    		firstMagnet.setVisible(true);
-		            try {
-		            	Thread.sleep(10);
-		            } catch (InterruptedException e) {
-		            	e.printStackTrace();
-		            }
-		            if(i==120){
-		    			
-		            	cancel();
-		            	
-						charge3.setVisible(false);
-						System.out.println(charge3.getTranslateY()+charge3.getLayoutY());
-						System.out.println(charge4.getLayoutY());
-						charge3.setTranslateY(0);
 
-						
-		            }
-		            	
-		        }
+				        firstMagnet1.setVisible(false);
+				        firstMagnet2.setVisible(false);
+						charge3.setVisible(true);
+				        firstMagnet1.setVisible(true);
+				       	trans = charge3.getTranslateY();
+				        firstMagnet2.setVisible(true);
+				       	for (int i=1; i<120; i++) {
+				            charge3.setTranslateY(trans+i);
+				            try {
+				            	Thread.sleep(10);
+				            } catch (InterruptedException e) {
+				            	e.printStackTrace();
+				            }
+				            if(i==119){
+				    			
+								charge3.setVisible(false);
+								charge3.setTranslateY(0);
+
+								
+				            }
+				            
+				            	
+				        }
+				        charge4.setVisible(true);
+						trans = charge4.getTranslateY();
+				        for (int i=1; i<130; i++) {
+				        	 if (isCancelled()) {
+				               break;
+				            }
+				            charge4.setTranslateY(trans+i);
+				            try {
+				            	Thread.sleep(10);
+				            } catch (InterruptedException e) {
+				            	e.printStackTrace();
+				            }
+				            if(i==128){
+				    			
+				            	cancel();
+								charge4.setVisible(false);
+								charge4.setTranslateY(0);
+								start.setDisable(false);
+								settingMode = true;
+								check2.setDisable(false);
+								check3.setDisable(false);
+
+				            	
+				            }
+				            	
+				        }
+		            
 		        return null;
 		    }
 		};
-		Task<Void> task3 = new Task<Void>() {
-		    @Override public Void call() {
-				try {
-	            	Thread.sleep(180+1190+1220);
-	            } catch (InterruptedException e) {
-	            	e.printStackTrace();
-	            }
-				charge4.setVisible(true);
-		        for (int i=1; i<130; i++) {
-		        	 if (isCancelled()) {
-		               break;
-		            }
-		            charge4.setTranslateY(charge4.getTranslateY()+1);
-		    		firstMagnet.setVisible(false);
-		    		secondMagnet.setVisible(false);
-		    		thirdMagnet.setVisible(false);
-		    		ekran.setVisible(false);
-		    		
-		    		ekran.setVisible(true);
-		    		thirdMagnet.setVisible(vM3);
-		    		secondMagnet.setVisible(vM2);
-		    		firstMagnet.setVisible(true);
-		            try {
-		            	Thread.sleep(10);
-		            } catch (InterruptedException e) {
-		            	e.printStackTrace();
-		            }
-		            if(i==128){
-		    			
-		            	cancel();
-		            	
-						charge4.setVisible(false);
-						charge4.setTranslateY(0);
-						start.setDisable(false);
-						settingMode = true;
-						check2.setDisable(false);
-						check3.setDisable(false);
-						
-		            }
-		            	
-		        }
-		        return null;
-		    }
-		};
-		
+	
 		
 		new Thread(task).start();
-		new Thread(task1).start();
-		new Thread(task2).start();
-		new Thread(task3).start();
 		
 		
 		}

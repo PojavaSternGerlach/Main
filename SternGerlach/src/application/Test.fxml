@@ -23,6 +23,11 @@
                      </rotationAxis>
                   </Box>
                   <Sphere fx:id="charge4" layoutX="100.0" layoutY="254.0" radius="5.0" visible="false" />
+                  <Circle centerX="99.0" centerY="390.0" fill="DODGERBLUE" radius="5.0" rotate="-135.0" stroke="BLACK" strokeType="INSIDE">
+                     <rotationAxis>
+                        <Point3D x="1.0" y="1.0" z="1.0" />
+                     </rotationAxis>
+                  </Circle>
                   <AnchorPane fx:id="thirdMagnet" prefHeight="200.0" prefWidth="200.0" rotate="135.0">
                      <children>
                         <Box fx:id="thirdMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="304.0" width="20.0" />
