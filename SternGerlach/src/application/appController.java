@@ -43,7 +43,6 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import javax.imageio.ImageIO;
-
 public class appController implements Initializable{
 
 	//ustawienia jezyka
@@ -147,6 +146,13 @@ public class appController implements Initializable{
 	
     DecimalFormat df = new DecimalFormat("#.###");
 
+    // losowanie koloru
+    Random rand = new Random();
+    float r = rand.nextFloat();
+    float gr = rand.nextFloat();
+    float b = rand.nextFloat();
+    Color randomColor = new Color(r, gr, b, 1);	
+    
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -916,5 +922,6 @@ public class appController implements Initializable{
 		
 		return out;
 	}
+
 	
 }
