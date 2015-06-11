@@ -896,7 +896,7 @@ public class appController implements Initializable{
 	            );
 	    }	
 	
-	private int upordown(){
+	private boolean upordown(){
 		int out = 0;
 		
 		while (out == 0){
@@ -920,7 +920,9 @@ public class appController implements Initializable{
 		System.out.println(out);
 		}
 		
-		return out;
+		if (out == 1)
+			return true;
+		return false;
 	}
 
 	
