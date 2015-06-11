@@ -23,7 +23,12 @@
                      </rotationAxis>
                   </Box>
                   <Sphere fx:id="charge4" layoutX="100.0" layoutY="254.0" radius="5.0" visible="false" />
-                  <Circle centerX="99.0" centerY="390.0" fill="DODGERBLUE" radius="5.0" rotate="-135.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle centerX="83.616" translateZ="-16.384" centerY="390.0" fill="DODGERBLUE" radius="5.0" rotate="-135.0" stroke="BLACK" strokeType="INSIDE">
+                     <rotationAxis>
+                        <Point3D x="1.0" y="1.0" z="1.0" />
+                     </rotationAxis>
+                  </Circle>
+                  <Circle centerX="116.384" centerY="390.0" translateZ="0" fill="DODGERBLUE" radius="5.0" rotate="-135.0" stroke="BLACK" strokeType="INSIDE">
                      <rotationAxis>
                         <Point3D x="1.0" y="1.0" z="1.0" />
                      </rotationAxis>
@@ -59,9 +64,9 @@
                <rotationAxis>
                   <Point3D x="1.0" y="1.0" z="1.0" />
                </rotationAxis>
-                  <PointLight color="WHITE" layoutX="400.0" lightOn="true" />
+                <PointLight color="WHITE" layoutX="400.0" lightOn="true" />
             <PointLight color="WHITE" layoutX="14.0" layoutY="399.0" lightOn="true" />
-         
+          
             </Group>
            
          </children>
@@ -127,7 +132,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                               <Label fx:id="up" layoutX="51.0" layoutY="15.0" text="Particles detected" />
+                              <Label fx:id="detected" layoutX="51.0" layoutY="15.0" text="Particles detected" />
                               <Label fx:id="up" layoutX="51.0" layoutY="33.0" text="Up:" />
                               <Label fx:id="down" layoutX="51.0" layoutY="81.0" text="Down:" />
                               <Label fx:id="countUp" layoutX="157.0" layoutY="33.0" text="0" />
@@ -145,7 +150,7 @@
                <children>
                   <Button fx:id="start" layoutY="152.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="280.0" text="START" AnchorPane.topAnchor="152.0" />
                   <Button fx:id="example" layoutY="14.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="280.0" text="EXAMPLE" AnchorPane.topAnchor="14.0" />
-                  <Slider layoutX="6.0" layoutY="111.0" majorTickUnit="3.0" max="10.0" min="1.0" minorTickCount="2" prefHeight="14.0" prefWidth="271.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+                  <Slider fx:id="slider" layoutX="6.0" layoutY="111.0" majorTickUnit="3.0" max="10.0" min="1.0" minorTickCount="2" prefHeight="14.0" prefWidth="271.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                   <Label layoutX="69.0" layoutY="90.0" text="Number of iterations:" />
                </children>
             </AnchorPane>

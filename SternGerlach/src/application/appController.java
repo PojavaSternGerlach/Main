@@ -31,6 +31,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
@@ -94,6 +95,8 @@ public class appController implements Initializable{
 	@FXML private CheckBox check2;
 	@FXML private CheckBox check3;
 	
+	@FXML private Slider slider;
+	
 	@FXML private Button example;
 	@FXML private Button start;
 	
@@ -147,6 +150,10 @@ public class appController implements Initializable{
 
 	int probup = 0;
 	int probdown = 0;
+	
+	int countup;
+	int countdown;
+	int iterations;
 	
     DecimalFormat df = new DecimalFormat("#.###");
 
@@ -441,6 +448,8 @@ public class appController implements Initializable{
 		start.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 
+				iterations = (int)slider.getValue();
+				System.out.println(iterations);
 				startCalculation();
 				if (on3 == 1){
 					series1.getData().clear();
@@ -651,7 +660,17 @@ public class appController implements Initializable{
 		
 		Task<Void> task = new Task<Void>() {
 		    @Override public Void call() {
-		        for (int i=1; i<17; i++) {
+		    	for(int j=0; j<iterations; j++)
+		        {
+		    		if(j>0)
+		    			 try {
+				            	Thread.sleep(20);
+				            } catch (InterruptedException e) {
+				            	e.printStackTrace();
+				            	System.out.println(5);
+				            }
+		        	for (int i=1; i<17; i++) {
+		        
 		            
 		            charge.setTranslateY(charge.getTranslateY()+1);
 
@@ -660,6 +679,7 @@ public class appController implements Initializable{
 		            	Thread.sleep(10);
 		            } catch (InterruptedException e) {
 		            	e.printStackTrace();
+		            	System.out.println(1);
 		            }
 		            if(i==16){
 						charge.setVisible(false);
@@ -680,6 +700,7 @@ public class appController implements Initializable{
 		            	Thread.sleep(10);
 		            } catch (InterruptedException e) {
 		            	e.printStackTrace();
+		            	System.out.println(2);
 		            }
 		        }
 		            	charge2.setVisible(false);
@@ -698,6 +719,7 @@ public class appController implements Initializable{
 				            	Thread.sleep(10);
 				            } catch (InterruptedException e) {
 				            	e.printStackTrace();
+				            	System.out.println(3);
 				            }
 				            if(i==119){
 				    			
@@ -710,22 +732,37 @@ public class appController implements Initializable{
 				            	
 				        }
 				        charge4.setVisible(true);
+				        boolean upordown = upordown();
 						trans = charge4.getTranslateY();
+						double transx = charge4.getTranslateX();
 				        for (int i=1; i<130; i++) {
 				        	 if (isCancelled()) {
 				               break;
 				            }
 				            charge4.setTranslateY(trans+i);
+				            if(upordown){
+				            	charge4.setTranslateX(transx-0.001*i*i);
+				            	charge4.setTranslateZ(transx-0.001*i*i);
+				            }
+				            else{
+				            	charge4.setTranslateX(transx+0.001*i*i);
+  			            	    charge4.setTranslateZ(transx+0.001*i*i);
+				            }
 				            try {
 				            	Thread.sleep(10);
 				            } catch (InterruptedException e) {
 				            	e.printStackTrace();
+				            	System.out.println(4);
 				            }
 				            if(i==128){
 				    			
 				            	cancel();
 								charge4.setVisible(false);
+								System.out.println(charge4.getLayoutX()+charge4.getTranslateX());
+								System.out.println(charge4.getTranslateZ());
 								charge4.setTranslateY(0);
+								charge4.setTranslateX(0);
+								charge4.setTranslateZ(0);
 								start.setDisable(false);
 								settingMode = true;
 								check2.setDisable(false);
@@ -735,8 +772,10 @@ public class appController implements Initializable{
 				            }
 				            	
 				        }
-		            
+				       
+		        }     
 		        return null;
+		    
 		    }
 		};
 	
@@ -922,7 +961,7 @@ public class appController implements Initializable{
 
 		out = dist[x];
 		
-		System.out.println(out);
+		//System.out.println(out);
 		}
 		
 		if (out == 1)
