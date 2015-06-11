@@ -69,6 +69,11 @@
             </AnchorPane>
             <PointLight color="WHITE" layoutX="400.0" lightOn="true" />
             <PointLight color="WHITE" layoutX="14.0" layoutY="399.0" lightOn="true" />
+            <SubScene height="560.0" width="500.0">
+              <root>
+                <Region />
+              </root>
+            </SubScene>
          </children>
       </AnchorPane>
       <GridPane alignment="TOP_RIGHT" layoutX="400.0" layoutY="30.0" prefHeight="503.0" prefWidth="280.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0">
@@ -148,8 +153,10 @@
             </TabPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Button fx:id="start" layoutY="114.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="280.0" text="START" AnchorPane.topAnchor="150.0" />
-                  <Button fx:id="example" layoutY="32.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="280.0" text="EXAMPLE" AnchorPane.topAnchor="50.0" />
+                  <Button fx:id="start" layoutY="152.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="280.0" text="START" AnchorPane.topAnchor="152.0" />
+                  <Button fx:id="example" layoutY="14.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="280.0" text="EXAMPLE" AnchorPane.topAnchor="14.0" />
+                  <Slider layoutX="6.0" layoutY="111.0" majorTickUnit="3.0" max="10.0" min="1.0" minorTickCount="2" prefHeight="14.0" prefWidth="271.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+                  <Label layoutX="69.0" layoutY="90.0" text="Number of iterations:" />
                </children>
             </AnchorPane>
          </children>
