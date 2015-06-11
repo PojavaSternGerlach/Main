@@ -31,7 +31,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
@@ -55,6 +54,9 @@ public class appController implements Initializable{
 	
 	//obecnie modyfikowane zmienne
 	private Boolean settingMode = true;
+	
+
+    boolean upordown;
 	
 	// inicjalizacja osi wykresu
 	CategoryAxis xAxis = new CategoryAxis();
@@ -89,16 +91,18 @@ public class appController implements Initializable{
 	@FXML private Label p5;
 	@FXML private Label p6;
 
+	@FXML private Label countUp;
+	@FXML private Label countDown;
+
 	
 	@FXML private CheckBox enable;
 	@FXML private CheckBox check1;
 	@FXML private CheckBox check2;
 	@FXML private CheckBox check3;
 	
-	@FXML private Slider slider;
-	
 	@FXML private Button example;
 	@FXML private Button start;
+	@FXML private Button reset;
 	
 	@FXML private Tab state;
 	@FXML private Tab sphere;
@@ -151,9 +155,8 @@ public class appController implements Initializable{
 	int probup = 0;
 	int probdown = 0;
 	
-	int countup;
-	int countdown;
-	int iterations;
+	int countup = 0;
+	int countdown = 0;
 	
     DecimalFormat df = new DecimalFormat("#.###");
 
@@ -448,9 +451,7 @@ public class appController implements Initializable{
 		start.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 
-				iterations = (int)slider.getValue();
-				System.out.println(iterations);
-				startCalculation();
+				
 				if (on3 == 1){
 					series1.getData().clear();
 					probup = (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
@@ -465,8 +466,17 @@ public class appController implements Initializable{
 					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
+				upordown = upordown();
 				
-				System.out.println(upordown());
+				startCalculation();
+				if(upordown){
+					countup++;
+					countUp.setText(Integer.toString(countup));
+				}
+				else{
+					countdown++;
+					countDown.setText(Integer.toString(countdown));
+				}
 				
 			}}
 		);
@@ -492,6 +502,12 @@ public class appController implements Initializable{
 		        
 		        example.setDisable(true);
 				
+			}}
+		);
+		reset.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e) {
+
+				reset();
 			}}
 		);
 
@@ -650,7 +666,7 @@ public class appController implements Initializable{
 		
 	}
 	
-	void startCalculation(){//inicjalizacja animacji - TODO: ogarniecie animacji do konca
+	void startCalculation(){//inicjalizacja animacji 
 		charge.setVisible(true);
 		
 		start.setDisable(true);
@@ -660,16 +676,7 @@ public class appController implements Initializable{
 		
 		Task<Void> task = new Task<Void>() {
 		    @Override public Void call() {
-		    	for(int j=0; j<iterations; j++)
-		        {
-		    		if(j>0)
-		    			 try {
-				            	Thread.sleep(20);
-				            } catch (InterruptedException e) {
-				            	e.printStackTrace();
-				            	System.out.println(5);
-				            }
-		        	for (int i=1; i<17; i++) {
+		    	for (int i=1; i<17; i++) {
 		        
 		            
 		            charge.setTranslateY(charge.getTranslateY()+1);
@@ -732,7 +739,6 @@ public class appController implements Initializable{
 				            	
 				        }
 				        charge4.setVisible(true);
-				        boolean upordown = upordown();
 						trans = charge4.getTranslateY();
 						double transx = charge4.getTranslateX();
 				        for (int i=1; i<130; i++) {
@@ -773,7 +779,7 @@ public class appController implements Initializable{
 				            	
 				        }
 				       
-		        }     
+		           
 		        return null;
 		    
 		    }
@@ -964,9 +970,57 @@ public class appController implements Initializable{
 		//System.out.println(out);
 		}
 		
+		
 		if (out == 1)
 			return true;
 		return false;
+	}
+	
+	private void reset(){
+		countUp.setText("0");
+		countup = 0;
+		countDown.setText("0");
+		countdown = 0;
+		Rotate rotation = new Rotate(-135);
+		Point3D axis = new Point3D(0,0,0); 
+		rotation.setAxis(axis.midpoint(0, 304, 0));
+		
+		secondMagnet1.getTransforms().clear();
+		secondMagnet1.setTranslateZ(0);
+		secondMagnet1.setTranslateX(0);
+		secondMagnet2.getTransforms().clear();
+		secondMagnet2.setTranslateX(0);
+		secondMagnet2.setTranslateZ(0);
+		secondMagnet1p.getTransforms().clear();
+		secondMagnet1p.setTranslateZ(0);
+		secondMagnet1p.setTranslateX(0);
+		secondMagnet1p.getTransforms().clear();
+		secondMagnet2p.setTranslateX(0);
+		secondMagnet2p.setTranslateZ(0);
+		thirdMagnet1.getTransforms().clear();
+		thirdMagnet1.setTranslateZ(0);
+		thirdMagnet1.setTranslateX(0);
+		thirdMagnet2.getTransforms().clear();
+		thirdMagnet2.setTranslateX(0);
+		thirdMagnet2.setTranslateZ(0);
+		thirdMagnet1p.getTransforms().clear();
+		thirdMagnet1p.setTranslateZ(0);
+		thirdMagnet1p.setTranslateX(0);
+		thirdMagnet2p.getTransforms().clear();
+		thirdMagnet2p.setTranslateX(0);
+		thirdMagnet2p.setTranslateZ(0);
+		theta2 = 0;
+		theta3 = 0;
+		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+		p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+		p6.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		p5.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+		ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+		repaint();
+		
 	}
 	
 }
