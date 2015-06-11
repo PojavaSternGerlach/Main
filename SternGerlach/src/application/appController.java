@@ -93,6 +93,11 @@ public class appController implements Initializable{
 
 	@FXML private Label countUp;
 	@FXML private Label countDown;
+	@FXML private Label detected;
+	@FXML private Label up;
+	@FXML private Label down;
+	
+	@FXML private Tab sim;
 
 	
 	@FXML private CheckBox enable;
@@ -104,6 +109,7 @@ public class appController implements Initializable{
 	@FXML private Button start;
 	@FXML private Button reset;
 	
+	@FXML private Tab states;
 	@FXML private Tab state;
 	@FXML private Tab sphere;
 	@FXML private Tab sphere2;
@@ -529,9 +535,15 @@ public class appController implements Initializable{
 		enable.setText(bundle.getString("enable"));
 		probs.setText(bundle.getString("prob"));
 		menuAbout.setText(bundle.getString("about"));
-		state.setText(bundle.getString("states"));
+		states.setText(bundle.getString("states"));
 		sphere.setText(bundle.getString("sphere"));
 		manual.setText(bundle.getString("manual"));
+		up.setText(bundle.getString("up"));
+		down.setText(bundle.getString("down"));
+		state.setText(bundle.getString("state"));
+		sim.setText(bundle.getString("sim"));
+		chart.setTitle(bundle.getString("chart"));
+		detected.setText(bundle.getString("detected"));
 		magn1.setText(bundle.getString("component")+" 1:");
 		magn2.setText(bundle.getString("component")+" 2:");
 		magn3.setText(bundle.getString("component")+" 3:");

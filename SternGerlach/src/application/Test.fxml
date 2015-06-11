@@ -89,7 +89,7 @@
          <children>
             <TabPane prefHeight="291.0" prefWidth="234.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="state" text="Magnet states">
+                <Tab fx:id="states" text="Magnet states">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -107,7 +107,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Simulation">
+                <Tab fx:id="sim" text="Simulation">
                 <content>
                 <TabPane prefHeight="291.0" prefWidth="234.0" tabClosingPolicy="UNAVAILABLE">
                 <tabs>
