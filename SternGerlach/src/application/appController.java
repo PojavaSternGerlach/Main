@@ -186,7 +186,6 @@ public class appController implements Initializable{
 		p5.setVisible(false);
 		p6.setVisible(false);
 		
-		charge.setVisible(false);
 
 		NumberFormat format = new DecimalFormat("# %");
 		StringConverter<Number> sc = new StringConverter<Number>() {
@@ -667,7 +666,7 @@ public class appController implements Initializable{
 	}
 	
 	void startCalculation(){//inicjalizacja animacji 
-		charge.setVisible(true);
+		
 		
 		start.setDisable(true);
 		check2.setDisable(true);
@@ -676,32 +675,11 @@ public class appController implements Initializable{
 		
 		Task<Void> task = new Task<Void>() {
 		    @Override public Void call() {
-		    	for (int i=1; i<17; i++) {
-		        
-		            
-		            charge.setTranslateY(charge.getTranslateY()+1);
-
-		    		
-		            try {
-		            	Thread.sleep(10);
-		            } catch (InterruptedException e) {
-		            	e.printStackTrace();
-		            	System.out.println(1);
-		            }
-		            if(i==16){
-						charge.setVisible(false);
-						System.out.println(charge.getTranslateY());
-						charge.setTranslateY(0);
-						
-					
-		            }
-		            	
-		        }
+		    	
 		        charge2.setVisible(true);
-				double trans = charge2.getTranslateY();
-		        for (int i=1; i<117; i++) {
+		        for (int i=1; i<112; i++) {
 		        	
-		            charge2.setTranslateY(trans+i);
+		            charge2.setTranslateY(i);
 
 		            try {
 		            	Thread.sleep(10);
@@ -718,10 +696,9 @@ public class appController implements Initializable{
 				        firstMagnet2.setVisible(false);
 						charge3.setVisible(true);
 				        firstMagnet1.setVisible(true);
-				       	trans = charge3.getTranslateY();
-				        firstMagnet2.setVisible(true);
+				       	firstMagnet2.setVisible(true);
 				       	for (int i=1; i<120; i++) {
-				            charge3.setTranslateY(trans+i);
+				            charge3.setTranslateY(i);
 				            try {
 				            	Thread.sleep(10);
 				            } catch (InterruptedException e) {
@@ -739,20 +716,19 @@ public class appController implements Initializable{
 				            	
 				        }
 				        charge4.setVisible(true);
-						trans = charge4.getTranslateY();
-						double transx = charge4.getTranslateX();
+						
 				        for (int i=1; i<130; i++) {
 				        	 if (isCancelled()) {
 				               break;
 				            }
-				            charge4.setTranslateY(trans+i);
+				            charge4.setTranslateY(i);
 				            if(upordown){
-				            	charge4.setTranslateX(transx-0.001*i*i);
-				            	charge4.setTranslateZ(transx-0.001*i*i);
+				            	charge4.setTranslateX(-0.001*i*i);
+				            	charge4.setTranslateZ(-0.001*i*i);
 				            }
 				            else{
-				            	charge4.setTranslateX(transx+0.001*i*i);
-  			            	    charge4.setTranslateZ(transx+0.001*i*i);
+				            	charge4.setTranslateX(0.001*i*i);
+  			            	    charge4.setTranslateZ(0.001*i*i);
 				            }
 				            try {
 				            	Thread.sleep(10);
@@ -764,8 +740,6 @@ public class appController implements Initializable{
 				    			
 				            	cancel();
 								charge4.setVisible(false);
-								System.out.println(charge4.getLayoutX()+charge4.getTranslateX());
-								System.out.println(charge4.getTranslateZ());
 								charge4.setTranslateY(0);
 								charge4.setTranslateX(0);
 								charge4.setTranslateZ(0);

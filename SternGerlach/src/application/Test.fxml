@@ -13,7 +13,7 @@
 
 <AnchorPane minHeight="0.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.appController">
    <children>
-      <AnchorPane id="magnetsAnimate" layoutY="25.0" minHeight="500.0" minWidth="500.0" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="513.0" prefWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="35.0">
+      <AnchorPane id="magnetsAnimate" layoutY="25.0" minHeight="500.0" minWidth="500.0" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="550.0" prefWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="35.0">
          <children>         
           <Group id="magnetsRot" layoutX="150.0" layoutY="64.0" rotate="-156.8" scaleY="1.2">
              <children>
@@ -57,7 +57,7 @@
                            <Point3D y="1.0" />
                         </rotationAxis>
                      </Group>
-                     <Sphere fx:id="charge2" layoutX="100.0" layoutY="17.0" radius="5.0" visible="false" />
+                     <Sphere fx:id="charge2" layoutX="100.0" layoutY="22.0" radius="5.0" visible="false" />
                       <Group fx:id="firstMagnet" rotate="135.0">
                          <children>
                               <Box fx:id="firstMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="67.0" width="20.0" />
@@ -67,7 +67,6 @@
                            <Point3D y="1.0" />
                         </rotationAxis>
                      </Group>
-                     <Sphere fx:id="charge" layoutX="100.0" radius="5.0" />
                    <PointLight color="WHITE" layoutX="400.0" lightOn="true" />
                <PointLight color="WHITE" layoutX="14.0" layoutY="399.0" lightOn="true" />
              </children>
