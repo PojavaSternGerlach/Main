@@ -14,9 +14,9 @@
 <AnchorPane minHeight="0.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.appController">
    <children>
       <AnchorPane id="magnetsAnimate" layoutY="25.0" minHeight="500.0" minWidth="500.0" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="513.0" prefWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="35.0">
-         <children>
-            <AnchorPane id="magnetsRot" layoutX="150.0" layoutY="64.0" prefHeight="415.0" prefWidth="200.0" rotate="-156.8" scaleY="1.2">
-               <children>
+         <children>         
+          <Group id="magnetsRot" layoutX="150.0" layoutY="64.0"  rotate="-156.8" scaleY="1.2">
+              
                   <Box fx:id="ekran" depth="150.0" layoutX="99.0" layoutY="390.0" rotate="-35.5" width="150.0">
                      <rotationAxis>
                         <Point3D y="1.0" />
@@ -28,52 +28,42 @@
                         <Point3D x="1.0" y="1.0" z="1.0" />
                      </rotationAxis>
                   </Circle>
-                  <AnchorPane fx:id="thirdMagnet" prefHeight="200.0" prefWidth="200.0" rotate="135.0">
-                     <children>
+                  <Group fx:id="thirdMagnet" rotate="135.0">
                         <Box fx:id="thirdMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="304.0" width="20.0" />
                         <Box fx:id="thirdMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="304.0" width="20.0" />
                         <Box fx:id="thirdMagnet2p" depth="50.0" height="100.0" layoutX="115.0" layoutY="304.0" visible="false" width="20.0" />
                         <Box fx:id="thirdMagnet1p" depth="50.0" height="100.0" layoutX="85.0" layoutY="304.0" visible="false" width="20.0" />
-                     </children>
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
-                  </AnchorPane>
+                  </Group>
                   <Sphere fx:id="charge3" layoutX="100.0" layoutY="134.0" radius="5.0" visible="false" />
-                  <AnchorPane fx:id="secondMagnet" prefHeight="200.0" prefWidth="200.0" rotate="135.0">
-                     <children>
+                  <Group fx:id="secondMagnet" rotate="135.0">
                         <Box fx:id="secondMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="184.0" width="20.0" />
                         <Box fx:id="secondMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="184.0" width="20.0" />
                         <Box fx:id="secondMagnet2p" depth="50.0" height="100.0" layoutX="115.0" layoutY="184.0" visible="false" width="20.0" />
                         <Box fx:id="secondMagnet1p" depth="50.0" height="100.0" layoutX="85.0" layoutY="184.0" visible="false" width="20.0" />
-                     </children>
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
-                  </AnchorPane>
+                  </Group>
                   <Sphere fx:id="charge2" layoutX="100.0" layoutY="17.0" radius="5.0" visible="false" />
-                   <AnchorPane fx:id="firstMagnet" prefHeight="200.0" prefWidth="200.0" rotate="135.0">
-                     <children>
+                   <Group fx:id="firstMagnet" rotate="135.0">
                         <Box fx:id="firstMagnet1" depth="50.0" height="100.0" layoutX="85.0" layoutY="67.0" width="20.0" />
                         <Box fx:id="firstMagnet2" depth="50.0" height="100.0" layoutX="115.0" layoutY="67.0" width="20.0" />
-                     </children>
                      <rotationAxis>
                         <Point3D y="1.0" />
                      </rotationAxis>
-                  </AnchorPane>
+                  </Group>
                   <Sphere fx:id="charge" layoutX="100.0" radius="5.0" />
-               </children>
                <rotationAxis>
                   <Point3D x="1.0" y="1.0" z="1.0" />
                </rotationAxis>
-            </AnchorPane>
-            <PointLight color="WHITE" layoutX="400.0" lightOn="true" />
+                  <PointLight color="WHITE" layoutX="400.0" lightOn="true" />
             <PointLight color="WHITE" layoutX="14.0" layoutY="399.0" lightOn="true" />
-            <SubScene height="560.0" width="500.0">
-              <root>
-                <Region />
-              </root>
-            </SubScene>
+         
+            </Group>
+           
          </children>
       </AnchorPane>
       <GridPane alignment="TOP_RIGHT" layoutX="400.0" layoutY="30.0" prefHeight="503.0" prefWidth="280.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0">

@@ -18,8 +18,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.SubScene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -101,12 +103,14 @@ public class appController implements Initializable{
 	@FXML private Tab sphere3;
 	@FXML private Tab sphere4;
 	
-	@FXML private AnchorPane magnetsAnimate;
-	@FXML private AnchorPane magnetsRot;
+	@FXML private SubScene scene;
 	
-	@FXML private AnchorPane firstMagnet;
-	@FXML private AnchorPane secondMagnet;
-	@FXML private AnchorPane thirdMagnet;
+	@FXML private AnchorPane magnetsAnimate;
+	@FXML private Group magnetsRot;
+	
+	@FXML private Group firstMagnet;
+	@FXML private Group secondMagnet;
+	@FXML private Group thirdMagnet;
 		
 	
 	@FXML private Box firstMagnet1;
@@ -156,6 +160,7 @@ public class appController implements Initializable{
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		
 		//poczatkowe ustawienia wyswietlania
 		check1.setSelected(true);
@@ -924,6 +929,5 @@ public class appController implements Initializable{
 			return true;
 		return false;
 	}
-
 	
 }
