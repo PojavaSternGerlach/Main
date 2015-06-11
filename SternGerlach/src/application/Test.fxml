@@ -100,6 +100,10 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
+                <Tab text="Simulation">
+                <content>
+                <TabPane prefHeight="291.0" prefWidth="234.0" tabClosingPolicy="UNAVAILABLE">
+                <tabs>
                 <Tab fx:id="sphere" text="Probability graph">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1d1d1d;">
@@ -123,6 +127,22 @@
                            </children>
                         </AnchorPane>
                   </content>
+                </Tab>
+                <Tab fx:id="state" text="Particle counter">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                               <Label fx:id="up" layoutX="51.0" layoutY="15.0" text="Particles detected" />
+                              <Label fx:id="up" layoutX="51.0" layoutY="33.0" text="Up:" />
+                              <Label fx:id="down" layoutX="51.0" layoutY="81.0" text="Down:" />
+                              <Label fx:id="countUp" layoutX="157.0" layoutY="33.0" text="0" />
+                              <Label fx:id="countDown" layoutX="157.0" layoutY="81.0" text="0" />
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                </tabs>
+                </TabPane>
+                </content>
                 </Tab>
               </tabs>
             </TabPane>
