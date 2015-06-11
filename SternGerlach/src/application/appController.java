@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.concurrent.Task;
@@ -141,6 +142,9 @@ public class appController implements Initializable{
 	double newX, newY;
 	int on2=1, on3=1;
 
+	int probup = 0;
+	int probdown = 0;
+	
     DecimalFormat df = new DecimalFormat("#.###");
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -429,14 +433,20 @@ public class appController implements Initializable{
 				startCalculation();
 				if (on3 == 1){
 					series1.getData().clear();
-					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+					probup = (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
+					probdown = (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
+					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
 				else if (on2 == 1){
 					series1.getData().clear();
-					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))))));
-					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))))));
+					probup = (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+					probdown = (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
+				
+				System.out.println(upordown());
 				
 			}}
 		);
@@ -447,13 +457,17 @@ public class appController implements Initializable{
 
 				if (on3 == 1){
 					series1.getData().clear();
-					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+					probup = (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
+					probdown = (int)(100*(0.5*Math.pow((Math.sin((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
+					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
 				else if (on2 == 1){
 					series1.getData().clear();
-					series1.getData().add(new XYChart.Data<String, Integer>("up", (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))))));
-					series1.getData().add(new XYChart.Data<String, Integer>("down", (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))))));
+					probup = (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
+					probdown = (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
+					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
 		        
 		        example.setDisable(true);
@@ -875,5 +889,32 @@ public class appController implements Initializable{
 	                new FileChooser.ExtensionFilter("PNG", "*.png")
 	            );
 	    }	
+	
+	private int upordown(){
+		int out = 0;
+		
+		while (out == 0){
+		int[] dist = new int[50];
+		
+		for (int i = 0; i < probup; i++)
+			dist[i] = 1;
+		
+		for (int i = probup; i < probup+probdown; i++)
+			dist[i] = -1;
+		
+		for (int i = probup+probdown; i < 50; i++)
+			dist[i] = 0;
+		
+		Random generator = new Random();
+		
+		int x = (int)(generator.nextDouble()*50);
+
+		out = dist[x];
+		
+		System.out.println(out);
+		}
+		
+		return out;
+	}
 	
 }
