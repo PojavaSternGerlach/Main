@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -42,26 +40,24 @@ import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 import javax.imageio.ImageIO;
+
 public class appController implements Initializable{
 
-	//ustawienia jezyka
+	//ustawienia jêzyka
 	Locale Polish = new Locale("Polish", "Poland","pl");
 	Locale lang = Locale.ENGLISH;
 	private ResourceBundle bundle;
 	
 	//obecnie modyfikowane zmienne
 	private Boolean settingMode = true;
-	
 
     boolean upordown;
 	
 	// inicjalizacja osi wykresu
 	CategoryAxis xAxis = new CategoryAxis();
     NumberAxis yAxis = new NumberAxis(0,50,10);
-
     
 	// FXML
 	@FXML private MenuItem menuSave;
@@ -99,7 +95,6 @@ public class appController implements Initializable{
 	
 	@FXML private Tab sim;
 
-	
 	@FXML private CheckBox enable;
 	@FXML private CheckBox check1;
 	@FXML private CheckBox check2;
@@ -119,13 +114,12 @@ public class appController implements Initializable{
 	@FXML private SubScene scene;
 	
 	@FXML private AnchorPane magnetsAnimate;
-	@FXML private Group magnetsRot;
 	
+	@FXML private Group magnetsRot;
 	@FXML private Group firstMagnet;
 	@FXML private Group secondMagnet;
 	@FXML private Group thirdMagnet;
 		
-	
 	@FXML private Box firstMagnet1;
 	@FXML private Box firstMagnet2;
 	@FXML private Box secondMagnet1;
@@ -137,6 +131,7 @@ public class appController implements Initializable{
 	@FXML private Box thirdMagnet1p;
 	@FXML private Box thirdMagnet2p;	
 	@FXML private Box ekran;
+	
 	@FXML private Sphere charge;
 	@FXML private Sphere charge2;
 	@FXML private Sphere charge3;
@@ -177,41 +172,20 @@ public class appController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		
-		//poczatkowe ustawienia wyswietlania
+		// poczatkowe ustawienia wyswietlania
 		check1.setSelected(true);
 		check1.setDisable(true);
 		check2.setSelected(true);
 		check2.setDisable(true);
 		check3.setSelected(true);
 		
+		// domyœlnie wy³¹czone wyœwietlanie prawdopodobieñstwa
 		p1.setVisible(false);
 		p2.setVisible(false);
 		p3.setVisible(false);
 		p4.setVisible(false);
 		p5.setVisible(false);
 		p6.setVisible(false);
-		
-
-		NumberFormat format = new DecimalFormat("# %");
-		StringConverter<Number> sc = new StringConverter<Number>() {
-
-	        @Override
-	        public String toString(Number number) {
-	            return format.format(number.doubleValue());
-	        }
-
-	        @Override
-	        public Number fromString(String string) {
-	            try {
-	                return format.parse(string);
-	            } catch (ParseException e) {
-	                e.printStackTrace();
-	                return 0 ;
-	            }
-	        }
-	    };
-	    yAxis.setTickLabelFormatter(sc);
 		
 		//wykres
         XYChart.Series series1 = new XYChart.Series();
@@ -228,7 +202,7 @@ public class appController implements Initializable{
         chart.setLegendVisible(false);
     	yAxis.setAutoRanging(false);
     	
-		// Kolorystyka animacji
+		// kolorystyka animacji
 		final PhongMaterial material = new PhongMaterial();
 	    material.setSpecularColor(Color.LIGHTGREY);
 	    material.setDiffuseColor(Color.LIGHTYELLOW);
@@ -279,18 +253,21 @@ public class appController implements Initializable{
                 
             }
         });
+		
 		menuClose.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 System.exit(0);
             }
         });
+		
 		polishMenu.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				lang = Polish;
 				SetLanguage();
 			}
 		});
+		
 		englishMenu.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				lang = Locale.ENGLISH;
@@ -298,7 +275,7 @@ public class appController implements Initializable{
 			}
 		});
 		
-		// sterowanie liczb¹ magnesów
+		// wyœwietlanie prawdopodobieñstw w zale¿noœci od liczby magnesów
 		check2.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(!check2.isSelected()){
@@ -319,6 +296,7 @@ public class appController implements Initializable{
 					
 			}}
 		});
+		
 		check3.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(check3.isSelected()){
@@ -385,6 +363,7 @@ public class appController implements Initializable{
 				}
 			}
 		});
+		
 		menuAbout.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(lang == Locale.ENGLISH){
@@ -450,13 +429,13 @@ public class appController implements Initializable{
 					p6.setVisible(true);
 					
 					repaint();
-
 			}}
 		});
+		
+		// przyciski start i example
 		start.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 
-				
 				if (on3 == 1){
 					series1.getData().clear();
 					probup = (int)(100*(0.5*Math.pow((Math.cos((theta3/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
@@ -471,9 +450,11 @@ public class appController implements Initializable{
 					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
+				
 				upordown = upordown();
 				
 				startCalculation();
+				
 				if(upordown){
 					countup++;
 					countUp.setText(Integer.toString(countup));
@@ -485,6 +466,7 @@ public class appController implements Initializable{
 				
 			}}
 		);
+		
 		example.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 
@@ -505,18 +487,15 @@ public class appController implements Initializable{
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
 		        
-		        example.setDisable(true);
-				
+		        example.setDisable(false);	
 			}}
 		);
+		
 		reset.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
-
 				reset();
 			}}
 		);
-
-		
 	}
 	
 	// jêzyk
@@ -551,7 +530,6 @@ public class appController implements Initializable{
 		ang2.setText(Integer.toString((int)theta2) + " " + bundle.getString("deg"));
 		ang3.setText(Integer.toString((int)theta3) + " " + bundle.getString("deg"));
 	}
-
 	
 	//poruszanie magnesami
 	@FXML
@@ -636,8 +614,8 @@ public class appController implements Initializable{
        	}
 	}
 	
-	
-	void repaint(){//odswiezanie ekranu
+	// odœwie¿anie ekranu
+	void repaint(){
 		firstMagnet.setVisible(false);
 		secondMagnet.setVisible(false);
 		thirdMagnet.setVisible(false);
@@ -673,12 +651,11 @@ public class appController implements Initializable{
 		}
 		firstMagnet.setVisible(true);
 		firstMagnet1.setVisible(true);
-		firstMagnet2.setVisible(true);
-		
+		firstMagnet2.setVisible(true);	
 	}
 	
-	void startCalculation(){//inicjalizacja animacji 
-		
+	// inicjalizacja animacji
+	void startCalculation(){
 		
 		start.setDisable(true);
 		check2.setDisable(true);
@@ -686,97 +663,86 @@ public class appController implements Initializable{
 		settingMode = false;
 		
 		Task<Void> task = new Task<Void>() {
-		    @Override public Void call() {
+			@Override public Void call() {
 		    	
-		        charge2.setVisible(true);
-		        for (int i=1; i<112; i++) {
+				charge2.setVisible(true);
+				for (int i=1; i<112; i++) {
 		        	
-		            charge2.setTranslateY(i);
+					charge2.setTranslateY(i);
 
-		            try {
-		            	Thread.sleep(10);
-		            } catch (InterruptedException e) {
-		            	e.printStackTrace();
-		            	System.out.println(2);
-		            }
-		        }
-		            	charge2.setVisible(false);
-						charge2.setTranslateY(0);
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						System.out.println(2);
+					}
+				}
+		        
+				charge2.setVisible(false);
+				charge2.setTranslateY(0);
 
-
-				        firstMagnet1.setVisible(false);
-				        firstMagnet2.setVisible(false);
-						charge3.setVisible(true);
-				        firstMagnet1.setVisible(true);
-				       	firstMagnet2.setVisible(true);
-				       	for (int i=1; i<120; i++) {
-				            charge3.setTranslateY(i);
-				            try {
-				            	Thread.sleep(10);
-				            } catch (InterruptedException e) {
-				            	e.printStackTrace();
-				            	System.out.println(3);
-				            }
-				            if(i==119){
-				    			
-								charge3.setVisible(false);
-								charge3.setTranslateY(0);
-
-								
-				            }
-				            
-				            	
-				        }
-				        charge4.setVisible(true);
-						
-				        for (int i=1; i<130; i++) {
-				        	 if (isCancelled()) {
-				               break;
-				            }
-				            charge4.setTranslateY(i);
-				            if(upordown){
-				            	charge4.setTranslateX(-0.001*i*i);
-				            	charge4.setTranslateZ(-0.001*i*i);
-				            }
-				            else{
-				            	charge4.setTranslateX(0.001*i*i);
-  			            	    charge4.setTranslateZ(0.001*i*i);
-				            }
-				            try {
-				            	Thread.sleep(10);
-				            } catch (InterruptedException e) {
-				            	e.printStackTrace();
-				            	System.out.println(4);
-				            }
-				            if(i==128){
-				    			
-				            	cancel();
-								charge4.setVisible(false);
-								charge4.setTranslateY(0);
-								charge4.setTranslateX(0);
-								charge4.setTranslateZ(0);
-								start.setDisable(false);
-								settingMode = true;
-								check2.setDisable(false);
-								check3.setDisable(false);
-
-				            	
-				            }
-				            	
-				        }
-				       
-		           
+				firstMagnet1.setVisible(false);
+				firstMagnet2.setVisible(false);
+				charge3.setVisible(true);
+				firstMagnet1.setVisible(true);
+				firstMagnet2.setVisible(true);
+				       	
+				for (int i=1; i<120; i++) {
+					charge3.setTranslateY(i);
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						System.out.println(3);
+					}
+					if(i==119){
+						charge3.setVisible(false);
+						charge3.setTranslateY(0);				
+					}           	
+				}
+					
+				charge4.setVisible(true);
+				
+				for (int i=1; i<130; i++) {
+					if (isCancelled()) {
+						break;
+					}
+					charge4.setTranslateY(i);
+					if(upordown){
+						charge4.setTranslateX(-0.001*i*i);
+						charge4.setTranslateZ(-0.001*i*i);
+					}
+					else{
+						charge4.setTranslateX(0.001*i*i);
+						charge4.setTranslateZ(0.001*i*i);
+					}
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						System.out.println(4);
+					}
+					if(i==128){
+						cancel();
+						charge4.setVisible(false);
+						charge4.setTranslateY(0);
+						charge4.setTranslateX(0);
+						charge4.setTranslateZ(0);
+						start.setDisable(false);
+						settingMode = true;
+						check2.setDisable(false);
+						check3.setDisable(false);	
+					}
+				}
+				
 		        return null;
-		    
 		    }
 		};
 	
-		
 		new Thread(task).start();
-		
-		
 		}
 	
+	// generacja przyk³adowego stanu magnesów
 	private void exampleCalc(){
 		
 		double dy = Math.random()*360*180;
@@ -808,6 +774,7 @@ public class appController implements Initializable{
 			ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
 			repaint();
 		}
+		
 		if ((on3==1)){
 			thirdMagnet1.getTransforms().add(rotation1);
 			thirdMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
@@ -876,6 +843,7 @@ public class appController implements Initializable{
 			ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
 			repaint();
 		}
+		
 		if ((on3==1)){
 			thirdMagnet1.getTransforms().add(rotation1);
 			thirdMagnet1.setTranslateZ(15*Math.sin(Math.toRadians(-theta3)));
@@ -919,6 +887,7 @@ public class appController implements Initializable{
    			
 	}
 
+	// filechooser dla zapisywania wykresu do pliku
 	private static void configureFileChooser(
 	        final FileChooser fileChooser) {      
 	            fileChooser.setTitle("Save Image");
@@ -932,6 +901,7 @@ public class appController implements Initializable{
 	            );
 	    }	
 	
+	// generowanie wyniku eksperymentu na podstawie rozk³adu prawdopodobieñstwa
 	private boolean upordown(){
 		int out = 0;
 		
@@ -952,16 +922,14 @@ public class appController implements Initializable{
 		int x = (int)(generator.nextDouble()*50);
 
 		out = dist[x];
-		
-		//System.out.println(out);
 		}
-		
 		
 		if (out == 1)
 			return true;
 		return false;
 	}
 	
+	// resetowanie ustawienia magnesów
 	private void reset(){
 		countUp.setText("0");
 		countup = 0;
@@ -1006,7 +974,5 @@ public class appController implements Initializable{
 		ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
 		ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
 		repaint();
-		
 	}
-	
 }
