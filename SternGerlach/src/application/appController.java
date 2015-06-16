@@ -487,7 +487,7 @@ public class appController implements Initializable{
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
 		        
-		        example.setDisable(false);	
+		        example.setDisable(true);	
 			}}
 		);
 		
