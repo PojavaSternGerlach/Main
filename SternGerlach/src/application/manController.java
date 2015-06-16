@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// klasa obs³uguj¹ca wyœwietlanie okien z informacjami
 public class manController implements Initializable{
 
 	@FXML private Button ok;	

@@ -17,7 +17,6 @@
          <children>         
           <Group id="magnetsRot" layoutX="150.0" layoutY="64.0" rotate="-156.8" scaleY="1.2">
              <children>
-                 
                      <Box fx:id="ekran" depth="150.0" layoutX="99.0" layoutY="390.0" rotate="-35.5" width="150.0">
                         <rotationAxis>
                            <Point3D y="1.0" />
@@ -73,9 +72,7 @@
                <rotationAxis>
                   <Point3D x="1.0" y="1.0" z="1.0" />
                </rotationAxis>
-          
             </Group>
-           
          </children>
       </AnchorPane>
       <GridPane alignment="TOP_RIGHT" layoutX="400.0" layoutY="30.0" prefHeight="503.0" prefWidth="280.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0">

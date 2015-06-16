@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="textpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manController">
+<AnchorPane id="textpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manController">
    <children>	
-     <Button fx:id="ok" layoutX="124.0" layoutY="298.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="OK" />
+     <Button fx:id="ok" layoutX="124.0" layoutY="398.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="OK" />
       <Text layoutX="31.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0"
-       text="Aby rozpocząć obliczenia, wybierz liczbę magnesów używanych w eksperymencie. Następnie przeciągając myszką ustaw kąt nachylenia każdego magnesu. Stan magnesów wyświetlany jest w panelu obok ekranu animacji. Aby wyświetlić obliczone prawdopodobieństwa pomiaru spinu elektronów zaznacz pole 'Prawdopodobieństwo'. Po ukończeniu konfiguracji naciśnij przycisk 'START' w celu rozpoczęcia obliczeń. Aby zobaczyć wyniki obliczeń oraz przykładową animację eksperymentu naciśnij przycisk 'PREZENTACJA'"
+       text="Aby rozpocząć obliczenia, ustal liczbę magnesów używanych w eksperymencie. Następnie łapiąc za magnes i przeciągając go myszką, ustaw kąt nachylenia każdego magnesu. Stan magnesów wyświetlany jest w panelu obok ekranu animacji. Aby wyświetlić obliczone prawdopodobieństwa pomiaru spinu elektronów zaznacz pole 'Prawdopodobieństwo'. Po ukończeniu konfiguracji naciśnij przycisk 'START' w celu wykonania obliczeń i rozpoczęcia animacji. Aby ustawić przykładowe położenie magnesów naciśnij przycisk 'PRZYKŁAD'. Wykres przedstawiający prawdopodobieństwa pomiarów oraz liczba zliczeń znajdują się w zakładce 'Symulacja'"
        wrappingWidth="310.13671875" />
    </children>
 </AnchorPane>

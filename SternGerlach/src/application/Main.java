@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
 
 	private Stage primaryStage;
@@ -16,17 +15,21 @@ public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+    	
+    	// ustawienie tytu³u i rozmiaru okna
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Stern-Gerlach Experiment");
         this.primaryStage.setMinHeight(600);
         this.primaryStage.setMinWidth(800);
-       
+        this.primaryStage.setResizable(false);
+        
         initRootLayout();
     }
 
-
+    // wczytanie informacji z plików fxml i css
     public void initRootLayout() {
         try {
+        	
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("Test.fxml"));
             layout = (AnchorPane) loader.load();

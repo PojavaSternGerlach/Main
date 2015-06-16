@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="textpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="287.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manController">
+<AnchorPane id="textpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manController">
    <children>	
-     <Button fx:id="ok" layoutX="124.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="OK" />
+     <Button fx:id="ok" layoutX="124.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="OK" />
       <Text layoutX="31.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0"
-      text="To start calculation, choose number of magnets used in experiment. Next, drag the magnets to set the angle. Current state of the magnets is shown on the panel on the right of the animation panel. To show calculated probabilities of electronic spin measurement, check the field 'Probabilities'. When finished, click 'START' button to see results of the experiment. You can use previously set values to run the experiment by clicking the 'Example' button."
-	  wrappingWidth="310.13671875" />
+       text="To start calculation, choose number of magnets used in experiment. Next, drag the magnets to set the angle. Current state of the magnets is shown on the panel on the right of the animation panel. To show calculated probabilities of electronic spin measurement, check the field 'Probabilities'. When finished, click 'START' button to start the computation and see the animation of the experiment. You can use exemplary magnet state values to run the experiment by clicking the 'EXAMPLE' button. The graph showing probabilities of spin measurement and the number of measured particles are placed in the 'Simulation' tab."
+	   wrappingWidth="310.13671875" />
    </children>
 </AnchorPane>
