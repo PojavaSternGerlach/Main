@@ -160,13 +160,6 @@ public class appController implements Initializable{
 	int countdown = 0;
 	
     DecimalFormat df = new DecimalFormat("#.###");
-
-    // losowanie koloru
-    Random rand = new Random();
-    float r = rand.nextFloat();
-    float gr = rand.nextFloat();
-    float b = rand.nextFloat();
-    Color randomColor = new Color(r, gr, b, 1);	
     
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
@@ -287,8 +280,8 @@ public class appController implements Initializable{
 					repaint();
 				}
 				else{
-					p3.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-					p4.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+					p4.setText("p="+(df.format(cos2(theta2))));
+					p3.setText("p="+(df.format(sin2(theta2))));
 					vM2 = true;
 					check3.setDisable(false);
 					on2 = 1;
@@ -300,8 +293,8 @@ public class appController implements Initializable{
 		check3.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e) {
 				if(check3.isSelected()){
-					p5.setText("p="+(df.format((0.5*Math.pow((Math.sin(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-					p6.setText("p="+(df.format((0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+					p6.setText("p="+(df.format(sin3(theta2,theta3))));
+					p5.setText("p="+(df.format(cos3(theta2,theta3))));
 					vM3= true;
 					check2.setDisable(true);
 					on3 = 1;
@@ -438,15 +431,15 @@ public class appController implements Initializable{
 
 				if (on3 == 1){
 					series1.getData().clear();
-					probup = (int)(100*(0.5*Math.pow((Math.sin(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
-					probdown = (int)(100*(0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
+					probup = (int)(100*sin3(theta2,theta3));
+					probdown = (int)(100*cos3(theta2,theta3));
 					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
 				else if (on2 == 1){
 					series1.getData().clear();
-					probup = (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-					probdown = (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+					probup = (int)(100*cos2(theta2));
+					probdown = (int)(100*sin2(theta2));
 					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
@@ -474,15 +467,15 @@ public class appController implements Initializable{
 
 				if (on3 == 1){
 					series1.getData().clear();
-					probup = (int)(100*(0.5*Math.pow((Math.sin(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
-					probdown = (int)(100*(0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)));
+					probup = (int)(100*sin3(theta2,theta3));
+					probdown = (int)(100*cos3(theta2,theta3));
 					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
 				else if (on2 == 1){
 					series1.getData().clear();
-					probup = (int)(100*(((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-					probdown = (int)(100*(((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+					probup = (int)(100*cos2(theta2));
+					probdown = (int)(100*sin2(theta2));
 					series1.getData().add(new XYChart.Data<String, Integer>("up", probup));
 					series1.getData().add(new XYChart.Data<String, Integer>("down", probdown));
 				}
@@ -593,19 +586,19 @@ public class appController implements Initializable{
 				repaint();
 			}
         
-			p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
-			p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+			p1.setText("p=0.5");
+			p2.setText("p=0.5");
 			if (on2 == 1){
-				p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-				p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+				p4.setText("p="+(df.format(cos2(theta2))));
+				p3.setText("p="+(df.format(sin2(theta2))));
 			}
 			else if (on2 == 0){
 				p3.setText("");
 				p4.setText("");
 			}
 			if (on3 == 1){
-				p6.setText("p="+(df.format((0.5*Math.pow((Math.sin(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-				p5.setText("p="+(df.format((0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+				p6.setText("p="+(df.format(sin3(theta2,theta3))));
+				p5.setText("p="+(df.format(cos3(theta2,theta3))));
 			}
 			else if (on3 == 0){
 				p5.setText("");
@@ -797,19 +790,19 @@ public class appController implements Initializable{
 			repaint();
 		}
     
-		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
-		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p1.setText("p=0.5");
+		p2.setText("p=0.5");
 		if (on2 == 1){
-			p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-			p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+			p4.setText("p="+(df.format(cos2(theta2))));
+			p3.setText("p="+(df.format(sin2(theta2))));
 		}
 		else if (on2 == 0){
 			p3.setText("");
 			p4.setText("");
 		}
 		if (on3 == 1){
-			p6.setText("p="+(df.format((0.5*Math.pow((Math.sin(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-			p5.setText("p="+(df.format((0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p6.setText("p="+(df.format(sin3(theta2,theta3))));
+			p5.setText("p="+(df.format(cos3(theta2,theta3))));
 		}
 		else if (on3 == 0){
 			p5.setText("");
@@ -866,40 +859,60 @@ public class appController implements Initializable{
 			repaint();
 		}
     
-		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
-		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
+		p1.setText("p=0.5");
+		p2.setText("p=0.5");
+		
 		if (on2 == 1){
-			p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-			p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
+			p4.setText("p="+(df.format(cos2(theta2))));
+			p3.setText("p="+(df.format(sin2(theta2))));
 		}
 		else if (on2 == 0){
 			p3.setText("");
 			p4.setText("");
 		}
 		if (on3 == 1){
-			p6.setText("p="+(df.format((0.5*Math.pow((Math.sin(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-			p5.setText("p="+(df.format((0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+			p6.setText("p="+(df.format(sin3(theta2,theta3))));
+			p5.setText("p="+(df.format(cos3(theta2,theta3))));
 		}
 		else if (on3 == 0){
 			p5.setText("");
 			p6.setText("");
-		}
-   			
+		}		
 	}
 
 	// filechooser dla zapisywania wykresu do pliku
 	private static void configureFileChooser(
 	        final FileChooser fileChooser) {      
+		
 	            fileChooser.setTitle("Save Image");
+	            
 	            fileChooser.setInitialDirectory(
 	                new File(System.getProperty("user.home"))
-	            );                 
+	            );       
+	            
 	            fileChooser.getExtensionFilters().addAll(
 	                new FileChooser.ExtensionFilter("All Images", "*.*"),
 	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
 	                new FileChooser.ExtensionFilter("PNG", "*.png")
 	            );
 	    }	
+	
+	// obliczenia prawdopodobieñstw na podstawie po³o¿enia magnesów
+	double sin2(double t2){
+		return 0.5*Math.pow((Math.sin((t2/2)*Math.PI/180)), 2);
+	}
+	
+	double cos2(double t2){
+		return 0.5*Math.pow((Math.cos((t2/2)*Math.PI/180)), 2);
+	}
+	
+	double sin3(double t2, double t3){
+		return Math.pow(Math.sin(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
+	}
+	
+	double cos3(double t2, double t3){
+		return Math.pow(Math.cos(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
+	}
 	
 	// generowanie wyniku eksperymentu na podstawie rozk³adu prawdopodobieñstwa
 	private boolean upordown(){
@@ -963,8 +976,10 @@ public class appController implements Initializable{
 		thirdMagnet2p.getTransforms().clear();
 		thirdMagnet2p.setTranslateX(0);
 		thirdMagnet2p.setTranslateZ(0);
+		
 		theta2 = 0;
 		theta3 = 0;
+		
 		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
 		p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
@@ -973,6 +988,7 @@ public class appController implements Initializable{
 		p5.setText("p="+(df.format((0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
 		ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
 		ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
+		
 		repaint();
 	}
 }
