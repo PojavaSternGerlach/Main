@@ -896,7 +896,6 @@ public class appController implements Initializable{
 	            );       
 	            
 	            fileChooser.getExtensionFilters().addAll(
-	                new FileChooser.ExtensionFilter("All Images", "*.*"),
 	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
 	                new FileChooser.ExtensionFilter("PNG", "*.png")
 	            );
