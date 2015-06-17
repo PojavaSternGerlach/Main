@@ -912,14 +912,10 @@ public class appController implements Initializable{
 	}
 	
 	double cos3(double t2, double t3){
-		if (t3 > 45 && t2 > 45)
-			return Math.pow(Math.cos(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 		return Math.pow(Math.sin(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 	}
 	
 	double sin3(double t2, double t3){
-		if (t3 > 45 && t2 > 45)
-			return Math.pow(Math.sin(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 		return Math.pow(Math.cos(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 	}
 	
