@@ -725,7 +725,8 @@ public class appController implements Initializable{
 						charge4.setTranslateZ(0);
 						start.setDisable(false);
 						settingMode = true;
-						check2.setDisable(false);
+						if (on3 != 1)
+							check2.setDisable(false);
 						check3.setDisable(false);	
 						example.setDisable(ex);
 					}
