@@ -906,11 +906,15 @@ public class appController implements Initializable{
 		return 0.5*Math.pow((Math.cos((t2/2)*Math.PI/180)), 2);
 	}
 	
-	double sin3(double t2, double t3){
+	double cos3(double t2, double t3){
+		if (t3 > 45)
+			return Math.pow(Math.cos(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 		return Math.pow(Math.sin(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 	}
 	
-	double cos3(double t2, double t3){
+	double sin3(double t2, double t3){
+		if (t3 > 45)
+			return Math.pow(Math.sin(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 		return Math.pow(Math.cos(((t3+t2)/2)*Math.PI/180), 2) * cos2(t2);
 	}
 	
@@ -980,12 +984,12 @@ public class appController implements Initializable{
 		theta2 = 0;
 		theta3 = 0;
 		
-		p1.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
-		p2.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta1/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta1/2)*Math.PI/180)),2)))));
-		p4.setText("p="+(df.format((0.5*Math.pow((Math.cos((theta2/2)*Math.PI/180)), 2)))));
-		p3.setText("p="+(df.format((0.5*Math.pow((Math.sin((theta2/2)*Math.PI/180)), 2)))));
-		p6.setText("p="+(df.format((0.5*Math.pow((Math.sin(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
-		p5.setText("p="+(df.format((0.5*Math.pow((Math.cos(((theta3+theta2)/2)*Math.PI/180)), 2))*(Math.pow((Math.cos((theta2/2)*Math.PI/180)),2)))));
+		p1.setText("p=0.5");
+		p2.setText("p=0.5");
+		p4.setText("p="+(df.format(cos2(theta2))));
+		p3.setText("p="+(df.format(sin2(theta2))));
+		p6.setText("p="+(df.format(sin3(theta2,theta3))));
+		p5.setText("p="+(df.format(cos3(theta2,theta3))));
 		ang2.setText(Integer.toString((int)theta2) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
 		ang3.setText(Integer.toString((int)theta3) + " " + ResourceBundle.getBundle("application.lang.lang",lang).getString("deg"));
 		
