@@ -21,9 +21,10 @@ public class Main extends Application {
         this.primaryStage.setTitle("Stern-Gerlach Experiment");
         this.primaryStage.setMinHeight(600);
         this.primaryStage.setMinWidth(800);
-        this.primaryStage.setResizable(false);
         
         initRootLayout();
+
+        this.primaryStage.setResizable(false);
     }
 
     // wczytanie informacji z plików fxml i css

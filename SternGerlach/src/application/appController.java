@@ -54,7 +54,7 @@ public class appController implements Initializable{
 	private Boolean settingMode = true;
 
     boolean upordown;
-	boolean ex = true;
+	boolean ex = false;
     
 	// inicjalizacja osi wykresu
 	CategoryAxis xAxis = new CategoryAxis();
